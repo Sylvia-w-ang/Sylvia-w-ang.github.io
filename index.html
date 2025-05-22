@@ -76,6 +76,30 @@
       transition: opacity 2s ease-in-out;
     }
 
+      #skip-intro {
+  margin-top: 50px;
+  padding: 12px 28px;
+  font-size: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #FFD700; /* Nice yellow */
+  color: black;              /* Black font */
+  border: none;
+  border-radius: 30px;       /* Rounded */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #FFD70088;
+}
+
+#skip-intro:hover {
+  background-color: #FFC300;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #FFD700cc;
+}
+  
+  #intro > * {
+  margin: 10px 0;
+}
+
     /* Main Content */
     #main-content {
       display: none;
@@ -102,7 +126,7 @@
       display: flex;
       justify-content: center;
       margin: 2rem 0;
-      font-size: 3rem;
+      font-size: 2rem;
     }
 
     .tabs button {
@@ -160,31 +184,15 @@
     }
   </style>
   
-  #skip-intro {
-  margin-top: 30px;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  font-family: 'Montserrat', sans-serif;
-  background-color: transparent;
-  color: var(--light-grey);
-  border: 2px solid var(--light-grey);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#skip-intro:hover {
-  color: var(--neon-pink);
-  border-color: var(--neon-pink);
-  transform: scale(1.05);
-}
+  
 </head>
 <body>
   <!-- Intro -->
   <div id="intro">
-    <button id="skip-intro">Skip Intro</button>
     <div id="name"></div>
     <div id="tagline"></div>
     <div id="welcome">Welcome</div>
+    <button id="skip-intro">Skip Intro</button>
   </div>
 
   <!-- Main Content -->
