@@ -159,10 +159,29 @@
       color: var(--neon-pink);
     }
   </style>
+  
+  #skip-intro {
+  margin-top: 30px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  background-color: transparent;
+  color: var(--light-grey);
+  border: 2px solid var(--light-grey);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#skip-intro:hover {
+  color: var(--neon-pink);
+  border-color: var(--neon-pink);
+  transform: scale(1.05);
+}
 </head>
 <body>
   <!-- Intro -->
   <div id="intro">
+    <button id="skip-intro">Skip Intro</button>
     <div id="name"></div>
     <div id="tagline"></div>
     <div id="welcome">Welcome</div>
@@ -238,7 +257,11 @@
         document.getElementById("main-content").style.display = "block";
       }, 2000);
     }
-
+    
+document.getElementById("skip-intro").addEventListener("click", () => {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("main-content").style.display = "block";
+});
     window.onload = () => {
       typeText("name", nameText, () => {
         typeText("tagline", taglineText, () => {
