@@ -2,51 +2,92 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Sylvia's Website - Card Layout</title>
+<title>Sylvia's Futuristic Website</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #e0f7fa;
     margin: 0;
-    padding: 0;
+    background: #0d0d0d;
+    color: #00fff7;
+    font-family: 'Orbitron', monospace, sans-serif;
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 100vh;
+    text-align: left;
   }
 
   .card {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    background: #111;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #00fff7;
     width: 700px;
     display: flex;
     overflow: hidden;
   }
 
   .sidebar {
-    background: #007acc;
-    color: white;
+    background: #00fff7;
+    color: #0d0d0d;
     padding: 40px 30px;
-    width: 250px;
+    width: 260px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
   .sidebar h1 {
-    margin: 0 0 20px 0;
-    font-size: 28px;
+    margin: 0 0 25px 0;
+    font-size: 32px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow:
+      0 0 10px #00fff7,
+      0 0 20px #00fff7;
+  }
+
+  .sidebar p {
+    font-weight: bold;
+    font-size: 18px;
   }
 
   .content {
-    padding: 40px 30px;
+    padding: 40px 50px;
     flex: 1;
+    color: #00fff7;
+    font-size: 18px;
+    line-height: 1.6;
+    text-shadow: 0 0 8px #00fff7aa;
   }
 
   .content p {
-    font-size: 18px;
-    line-height: 1.5;
-    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .glow-button {
+    margin-top: 30px;
+    padding: 15px 45px;
+    border: none;
+    border-radius: 50px;
+    background: #00fff7;
+    color: #0d0d0d;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow:
+      0 0 10px #00fff7,
+      0 0 25px #00fff7,
+      0 0 40px #00fff7;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .glow-button:hover {
+    box-shadow:
+      0 0 15px #00fff7,
+      0 0 40px #00fff7,
+      0 0 60px #00fff7,
+      0 0 80px #00fff7;
   }
 </style>
 </head>
@@ -61,7 +102,8 @@
       <p>I'm Sylvia, a 16-year-old student.</p>
       <p>This website is where I share my projects, ideas, and things I enjoy.</p>
       <p>Feel free to explore and get to know me better!</p>
-      <p>You can reach me at sylviajhw@gmail.com</p>
+      <p>You can reach me at <a href="mailto:sylviajhw@gmail.com" style="color:#0d0d0d; font-weight:bold; text-decoration:none;">sylviajhw@gmail.com</a></p>
+      <button class="glow-button">Explore More</button>
     </div>
   </div>
 </body>
