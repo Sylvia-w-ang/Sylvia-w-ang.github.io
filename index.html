@@ -12,7 +12,7 @@
       --neon-pink: #ff2299cc;
       --dark-bg: #121212;
       --light-grey: #D3D3D3;
-      --sidebar-bg: #1a1a26;
+      --sidebar-bg: #181828;
       --header-bg: #181828;
     }
 
@@ -22,6 +22,11 @@
       padding: 0;
     }
 
+    html, body {
+      height: auto;
+      min-height: 100vh;
+    }
+
     body {
       background: var(--dark-bg);
       font-family: 'Montserrat', sans-serif;
@@ -29,29 +34,30 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      height: 100vh;
     }
 
     header {
       background: var(--header-bg);
-      margin: 20px 0;
-      padding: 1.5rem 2rem;
+      height: 50vh;
+      width: 100%;
+      padding: 2rem;
       text-align: center;
       box-shadow: 0 0 10px var(--neon-purple);
-      width: fit-content;
-      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0;
     }
 
     header h1 {
       font-family: 'Orbitron', monospace;
-      font-size: 2.5rem;
+      font-size: 4rem;
       color: var(--neon-purple);
       text-shadow: 0 0 10px var(--neon-purple);
     }
 
     .container {
       display: flex;
-      flex: 1;
       max-width: 1200px;
       width: 100%;
       padding-top: 10px;
@@ -59,12 +65,11 @@
 
     nav {
       width: 200px;
-      background: linear-gradient(to bottom, var(--sidebar-bg), #2a2a3d);
+      background: var(--header-bg); /* solid black */
       padding: 1.5rem 1rem;
       border-radius: 12px;
       margin: 10px;
       box-shadow: 0 0 12px var(--neon-purple);
-      height: fit-content;
     }
 
     nav ul {
@@ -83,6 +88,7 @@
       text-shadow: 0 0 5px var(--light-grey);
       transition: color 0.3s, transform 0.2s;
       display: block;
+      cursor: pointer;
     }
 
     nav a:hover {
@@ -130,14 +136,16 @@
   <header>
     <h1>Welcome to Sylvia's Website</h1>
   </header>
+
   <div class="container">
     <nav>
       <ul>
         <li><a onclick="switchTab('home')">Home</a></li>
-        <li><a onclick="switchTab('fortune telling')">Fortune Telling</a></li>
+        <li><a onclick="switchTab('fortune')">Fortune Telling</a></li>
         <li><a onclick="switchTab('projects')">My Projects</a></li>
       </ul>
     </nav>
+
     <div class="content">
       <div id="home" class="tab active">
         <p>I'm Sylvia, a 16-year-old student.</p>
@@ -145,16 +153,10 @@
         <p>Feel free to explore and get to know me better!</p>
         <p>You can reach me at <a href="mailto:sylviajhw@gmail.com" class="email-link">sylviajhw@gmail.com</a></p>
       </div>
-  
-      
-      <div id="fortune telling space" class="tab">
+
+      <div id="fortune" class="tab">
         <p>Welcome to fortune telling</p>
       </div>
+
       <div id="projects" class="tab">
-        <p>Projects will be added here.</p>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
 
