@@ -12,8 +12,8 @@
       --neon-pink: #ff2299cc;
       --dark-bg: #121212;
       --light-grey: #D3D3D3;
-      --sidebar-bg: #181828;
-      --header-bg: #181828;
+      --header-bg: #9d22ff;
+      --header-glow: #9d22ff50; /* Glowing purple */
     }
 
     * {
@@ -34,7 +34,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      overflow: hidden; /* hide scroll during intro */
+      overflow: hidden;
     }
 
     /* Intro styles */
@@ -53,7 +53,7 @@
       color: var(--neon-purple);
     }
 
-    #name{
+    #name {
       color: var(--light-grey);
       border-right: 3px solid var(--light-grey);
       padding-right: 10px;
@@ -77,55 +77,59 @@
       opacity: 0;
       color: var(--neon-pink);
       user-select: none;
+      transition: opacity 2s ease-in-out; /* Smooth fading effect */
     }
 
-    /* Main page styles */
+    /* Header styles */
     header {
-      background: transparent; /* no background color */
+      background: var(--header-bg);
       height: 20vh;
       max-width: 1200px;
       width: 100%;
       margin: 0 auto 20px auto;
-      padding: 0;              /* remove padding */
+      padding: 0;
       text-align: center;
-      box-shadow: none;        /* remove shadow */
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 0;        /* remove rounded corners */
+      border-radius: 0;
+      box-shadow: 0 0 20px var(--header-glow); /* Purple glow around header */
     }
 
     header h1 {
       font-family: 'Orbitron', monospace;
       font-size: 4rem;
-      color: var(--neon-purple);
+      color: white;
       text-shadow: 0 0 10px var(--neon-purple);
     }
 
+    /* Tabs styles */
     .tabs {
+      display: flex;
+      justify-content: center;
       margin-top: 20px;
-      text-align: center;
+      font-size: 1.1rem;
     }
 
     .tabs button {
       background: transparent;
-      border: none; /* Removed border */
+      border: none;
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.1rem;
-      color: var(--light-grey);
+      color: white; /* White color for tabs */
       cursor: pointer;
       padding: 0.5rem 1rem;
       transition: color 0.3s, transform 0.2s;
     }
 
     .tabs button:hover {
-      color: var(--neon-purple);
+      color: var(--neon-pink); /* Pink color on hover */
       transform: translateX(5px);
     }
 
     .tabs button:not(:last-child)::after {
       content: " | ";
       margin: 0 10px;
+      color: white; /* White separator */
     }
 
     .container {
@@ -133,20 +137,14 @@
       max-width: 1200px;
       width: 100%;
       padding-top: 10px;
-    }
-
-    nav {
-      width: 200px;
-      background: var(--header-bg);
-      padding: 1.5rem 1rem;
-      border-radius: 12px;
-      margin: 10px;
-      box-shadow: none; /* No glowing effect */
+      flex-direction: column;
+      align-items: center;
     }
 
     .content {
-      flex: 1;
+      max-width: 900px;
       padding: 2rem;
+      margin-top: 20px;
     }
 
     .tab {
@@ -161,7 +159,6 @@
       font-size: 1.2rem;
       line-height: 1.6;
       color: #ccc;
-      text-shadow: 0 0 3px var(--neon-purple);
       margin-bottom: 1rem;
     }
 
@@ -194,15 +191,72 @@
       <h1>Sylvia's Website</h1>
     </header>
 
-    <!-- Tabs below header -->
+    <!-- Tabs beneath header -->
     <div class="tabs">
-      <button onclick="switchTab('home')">Home</button> |
-      <button onclick="switchTab('fortune')">Fortune Telling</button> |
+      <button onclick="switchTab('home')">Home</button>
+      <button onclick="switchTab('fortune')">Fortune Telling</button>
       <button onclick="switchTab('projects')">My Projects</button>
     </div>
 
     <div class="container">
       <div class="content">
         <div id="home" class="tab active">
-          <p>I'm Sylvia, a 16-year-old student.</
+          <p>I'm Sylvia, a 16-year-old student. <p>
+          <p>Welcome to my personal site where I share my passions, projects, and ideas.</p>
+           <p>Feel free to reach out to me via <a href="mailto:sylviajhw@gmail.com" class="email-link">Gmail</a>.</p>
+        </div>
+
+        <div id="fortune" class="tab">
+          <p>Welcome to the world of furtune telling!</p>
+        </div>
+
+        <div id="projects" class="tab">
+          <p>My projects will be added here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Intro animation: simulating typing effect
+    let nameText = "Sylvia Wang";
+    let taglineText = "Code. Create. Connect";
+    let welcomeText = "Welcome";
+    
+    let nameElement = document.getElementById("name");
+    let taglineElement = document.getElementById("tagline");
+    let welcomeElement = document.getElementById("welcome");
+
+    function typeEffect(element, text, callback) {
+      let i = 0;
+      let interval = setInterval(() => {
+        element.textContent += text[i];
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+          if (callback) callback();
+        }
+      }, 50); // Speed of typing
+    }
+
+    function showWelcomeMessage() {
+      welcomeElement.style.opacity = 1; // Fade in the "Welcome" message
+    }
+
+    // Type name and tagline, then show the "Welcome" message
+    typeEffect(nameElement, nameText, () => {
+      typeEffect(taglineElement, taglineText, () => {
+        setTimeout(showWelcomeMessage, 500); // Show "Welcome" after a short delay
+      });
+    });
+
+    // Hide intro and reveal main content after typing effect
+    setTimeout(() => {
+      document.getElementById("intro").style.display = 'none';
+      document.getElementById("main-content").style.display = 'block';
+    }, 5000); // Hide intro after 5 seconds
+  </script>
+</body>
+</html>
+
 
