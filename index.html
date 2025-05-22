@@ -11,11 +11,8 @@
       --neon-purple: #9d22ffcc;
       --neon-pink: #ff2299cc;
       --dark-bg: #121212;
-      --light-bg: #ffffff;
       --light-grey: #D3D3D3;
-      --header-glow: #9d22ff50; /* Purple glow */
-      --dark-text: #fff;
-      --light-text: #000;
+      --header-glow: #9d22ff50;
     }
 
     * {
@@ -25,97 +22,73 @@
     }
 
     html, body {
-      height: auto;
-      min-height: 100vh;
-    }
-
-    body {
-      background: var(--dark-bg);
+      height: 100%;
       font-family: 'Montserrat', sans-serif;
+      background: var(--dark-bg);
       color: var(--light-grey);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       overflow: hidden;
-      transition: background 0.3s ease, color 0.3s ease; /* Smooth transition */
     }
 
-    body.light-mode {
-      background: var(--light-bg);
-      color: var(--light-text);
-    }
-
-    /* Intro styles */
+    /* Intro Section */
     #intro {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: #111;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       font-size: 3rem;
-      user-select: none;
-      z-index: 9999;
       font-family: 'Orbitron', monospace;
-      color: var(--neon-purple);
-      opacity: 1;
-      transition: opacity 2s ease-out; /* Smooth fade out */
+      z-index: 9999;
+      transition: opacity 2s ease-out;
     }
 
-    body.light-mode #intro {
-      color: var(--light-text);
+    #name, #tagline {
+      border-right: 3px solid;
+      padding-right: 10px;
+      margin-bottom: 20px;
+      min-height: 3rem;
+      white-space: nowrap;
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
     }
 
     #name {
       color: var(--light-grey);
-      border-right: 3px solid var(--light-grey);
-      padding-right: 10px;
-      margin-bottom: 20px;
-      min-height: 3rem;
-      white-space: nowrap;
+      border-color: var(--light-grey);
     }
 
     #tagline {
-      border-right: 3px solid var(--neon-purple);
-      padding-right: 10px;
-      margin-bottom: 20px;
-      min-height: 3rem;
-      white-space: nowrap;
+      color: var(--neon-purple);
+      border-color: var(--neon-purple);
       font-size: 1.8rem;
     }
 
-    #name, #tagline {
-  transition: opacity 1s ease-in-out;
-}
-
-
     #welcome {
-      position: absolute;
       font-size: 6rem;
-      opacity: 0;
       color: var(--neon-pink);
-      user-select: none;
-      transition: opacity 2s ease-in-out; /* Smooth fading effect */
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
     }
 
-    /* Header styles */
+    /* Main Content */
+    #main-content {
+      display: none;
+      padding: 2rem;
+      text-align: center;
+    }
+
     header {
       height: 20vh;
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto 20px auto;
-      padding: 0;
-      text-align: center;
       display: flex;
-      align-items: center;
       justify-content: center;
-      border-radius: 0;
-      box-shadow: 0 0 20px var(--header-glow); /* Purple glow */
-    }
-
-    body.light-mode header {
-      box-shadow: 0 0 20px #ccc; /* Light shadow in light mode */
+      align-items: center;
+      box-shadow: 0 0 20px var(--header-glow);
     }
 
     header h1 {
@@ -125,50 +98,36 @@
       text-shadow: 0 0 10px var(--neon-purple);
     }
 
-    body.light-mode header h1 {
-      color: var(--light-text); /* Black text in light mode */
-      text-shadow: none;
-    }
-
-    /* Tabs styles */
     .tabs {
       display: flex;
       justify-content: center;
-      margin-top: 20px;
-      font-size: 3rem;
+      margin: 2rem 0;
+      font-size: 2rem;
     }
 
     .tabs button {
       background: transparent;
       border: none;
-      font-family: 'Montserrat', sans-serif;
-      color: white; /* White color for tabs */
-      cursor: pointer;
-      padding: 1rem 2rem;
+      color: white;
+      margin: 0 1rem;
       font-weight: bold;
+      cursor: pointer;
       transition: color 0.3s, transform 0.2s;
     }
 
     .tabs button:hover {
-      color: var(--neon-pink); /* Pink color on hover */
-      transform: translateX(5px);
+      color: var(--neon-pink);
+      transform: translateY(-2px);
     }
 
-    .tabs button:not(:last-child)::after {
-      content: " | ";
-      margin: 0 10px;
-      color: white; /* White separator */
+    .tab {
+      display: none;
     }
 
-    body.light-mode .tabs button {
-      color: var(--light-text); /* Black text for tabs in light mode */
+    .tab.active {
+      display: block;
     }
 
-    body.light-mode .tabs button:hover {
-      color: var(--neon-pink); /* Pink on hover in light mode */
-    }
-
-    /* Footer */
     footer {
       width: 100%;
       text-align: center;
@@ -180,87 +139,54 @@
       font-size: 1.2rem;
     }
 
-    body.light-mode footer {
-      background-color: var(--light-bg);
-      color: var(--light-text);
-    }
-
     .social-icons {
       margin-top: 10px;
     }
 
     .social-icon {
       color: var(--light-grey);
-      text-decoration: none;
       margin: 0 15px;
       font-size: 1.8rem;
+      text-decoration: none;
       transition: color 0.3s ease;
     }
 
-    body.light-mode .social-icon {
-      color: var(--light-text); 
+    .social-icon:hover {
+      color: var(--neon-cyan);
     }
-
-    /* Toggle button */
-    .mode-toggle {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 10px;
-      background: var(--neon-pink);
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      cursor: pointer;
-      border-radius: 5px;
-      z-index: 9999;
-    }
-
-    .mode-toggle:hover {
-      background-color: var(--neon-cyan);
-    }
-
   </style>
 </head>
 <body>
-  <!-- Toggle light/dark mode button -->
-  <button class="mode-toggle" onclick="toggleMode()">Toggle Light/Dark Mode</button>
-
-  <!-- Intro animation section -->
+  <!-- Intro -->
   <div id="intro">
     <div id="name"></div>
     <div id="tagline"></div>
     <div id="welcome">Welcome</div>
   </div>
 
-  <!-- Main content -->
-  <div id="main-content" style="display: none;">
+  <!-- Main Content -->
+  <div id="main-content">
     <header>
       <h1>Sylvia's Website</h1>
     </header>
 
-    <!-- Tabs beneath header -->
     <div class="tabs">
       <button onclick="switchTab('home')">Home</button>
       <button onclick="switchTab('fortune')">Fortune Telling</button>
       <button onclick="switchTab('projects')">My Projects</button>
     </div>
 
-    <div class="container">
-      <div class="content">
-        <div id="home" class="tab">
-          <p>I'm Sylvia, a 16-year-old student.</p>
-          <p>Welcome to my personal site where I share my passions, projects, and ideas.</p>
-          <p>Feel free to reach out to me!</p>
-        </div>
-
-        <div id="fortune" class="tab">
-          <p>Welcome to the world of fortune telling!</p>
-        </div>
-
-        <div id="projects" class="tab">
-          <p>My projects will be added here.</p>
-        </div>
+    <div class="tab-content">
+      <div id="home" class="tab active">
+        <p>I'm Sylvia, a 16-year-old student.</p>
+        <p>Welcome to my personal site where I share my passions, projects, and ideas.</p>
+        <p>Reach me at <a href="mailto:sylviajhw@gmail.com" class="email-link">sylviajhw@gmail.com</a>.</p>
+      </div>
+      <div id="fortune" class="tab">
+        <p>Welcome to the world of fortune telling!</p>
+      </div>
+      <div id="projects" class="tab">
+        <p>My projects will be added here.</p>
       </div>
     </div>
   </div>
@@ -275,105 +201,61 @@
   </footer>
 
   <script>
-    // Toggle light/dark mode
-    let isLightMode = false;
+    const nameText = "Sylvia Wang";
+    const taglineText = "> code. create. connect.";
+    const typingSpeed = 100;
 
-    function toggleMode() {
-      isLightMode = !isLightMode;
-      document.body.classList.toggle("light-mode", isLightMode);
+    function typeText(id, text, callback) {
+      const el = document.getElementById(id);
+      let i = 0;
+      const interval = setInterval(() => {
+        el.textContent += text[i];
+        i++;
+        if (i >= text.length) {
+          clearInterval(interval);
+          if (callback) setTimeout(callback, 1000);
+        }
+      }, typingSpeed);
     }
 
-    // Fade out intro and display the main content
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+    }
+
     function fadeOutWelcome() {
-      document.getElementById('welcome').style.opacity = 0;
-      document.getElementById('intro').style.opacity = 0;
+      const welcome = document.getElementById("welcome");
+      welcome.style.opacity = 0;
+      document.getElementById("intro").style.opacity = 0;
       setTimeout(() => {
-        showMainContent();
-      }, 2000); // Wait until the intro is fully faded
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      }, 2000);
     }
 
-    function showMainContent() {
-      document.getElementById('intro').style.display = 'none';
-      document.getElementById('main-content').style.display = 'block';
-    }
-
-    // Start the fade out process when the page loads
     window.onload = () => {
-      setTimeout(() => {
-        fadeOutWelcome();
-      }, 2000); // Delay the fade to allow for intro animation
+      typeText("name", nameText, () => {
+        typeText("tagline", taglineText, () => {
+          setTimeout(() => {
+            document.getElementById("name").style.opacity = 0;
+            document.getElementById("tagline").style.opacity = 0;
+            setTimeout(() => {
+              const welcome = document.getElementById("welcome");
+              welcome.style.opacity = 1;
+              setTimeout(() => {
+                fadeOutWelcome();
+              }, 2000);
+            }, 1000);
+          }, 1000);
+        });
+      });
     };
   </script>
 </body>
 </html>
 
-<script>
-  // Toggle light/dark mode
-  let isLightMode = false;
-
-  function toggleMode() {
-    isLightMode = !isLightMode;
-    document.body.classList.toggle("light-mode", isLightMode);
-  }
-
-  // Fade out intro and display the main content
-  function fadeOutWelcome() {
-    document.getElementById('welcome').style.opacity = 0;
-    document.getElementById('intro').style.opacity = 0;
-    setTimeout(() => {
-      showMainContent();
-    }, 2000); // Wait until the intro is fully faded
-  }
-
-  function showMainContent() {
-    document.getElementById('intro').style.display = 'none';
-    document.getElementById('main-content').style.display = 'block';
-  }
-
-  // Typing animation logic
-  const nameText = "Sylvia Wang";
-  const taglineText = "> code. create. connect.";
-  const typingSpeed = 100; // ms per character
-
-  function typeText(elementId, text, callback) {
-    const el = document.getElementById(elementId);
-    let i = 0;
-    const interval = setInterval(() => {
-      el.textContent += text[i];
-      i++;
-      if (i === text.length) {
-        clearInterval(interval);
-        if (callback) setTimeout(callback, 1000); // short pause after typing
-      }
-    }, typingSpeed);
-  }
-
-  // Intro animation sequence
-  window.onload = () => {
-    // Step 1: Type the name
-    typeText("name", nameText, () => {
-      // Step 2: Then type the tagline
-      typeText("tagline", taglineText, () => {
-        // Step 3: Fade out name & tagline
-        setTimeout(() => {
-          document.getElementById("name").style.opacity = 0;
-          document.getElementById("tagline").style.opacity = 0;
-
-          // Step 4: Show welcome after fade
-          setTimeout(() => {
-            const welcome = document.getElementById("welcome");
-            welcome.style.opacity = 1;
-
-            // Step 5: Fade out welcome
-            setTimeout(() => {
-              fadeOutWelcome(); // fade out intro + welcome, then show main
-            }, 2000); // show welcome for 2 seconds
-          }, 1000); // wait 1s after name/tagline fade
-        }, 1000); // wait 1s before fading name/tagline
-      });
-    });
-  };
-</script>
 
 
 
