@@ -80,28 +80,52 @@
     }
 
     /* Main page styles */
-
     header {
-  background: transparent; /* no background color */
-  height: 20vh;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto 20px auto;
-  padding: 0;              /* remove padding */
-  text-align: center;
-  box-shadow: none;        /* remove shadow */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0;        /* remove rounded corners */
-}
-
+      background: transparent; /* no background color */
+      height: 20vh;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto 20px auto;
+      padding: 0;              /* remove padding */
+      text-align: center;
+      box-shadow: none;        /* remove shadow */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0;        /* remove rounded corners */
+    }
 
     header h1 {
       font-family: 'Orbitron', monospace;
       font-size: 4rem;
       color: var(--neon-purple);
       text-shadow: 0 0 10px var(--neon-purple);
+    }
+
+    .tabs {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .tabs button {
+      background: transparent;
+      border: none; /* Removed border */
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      color: var(--light-grey);
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      transition: color 0.3s, transform 0.2s;
+    }
+
+    .tabs button:hover {
+      color: var(--neon-purple);
+      transform: translateX(5px);
+    }
+
+    .tabs button:not(:last-child)::after {
+      content: " | ";
+      margin: 0 10px;
     }
 
     .container {
@@ -117,31 +141,7 @@
       padding: 1.5rem 1rem;
       border-radius: 12px;
       margin: 10px;
-      box-shadow: 0 0 12px var(--neon-purple);
-    }
-
-    nav ul {
-      list-style: none;
-    }
-
-    nav li {
-      margin-bottom: 1.5rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--light-grey);
-      font-weight: bold;
-      font-size: 1rem;
-      text-shadow: 0 0 5px var(--light-grey);
-      transition: color 0.3s, transform 0.2s;
-      display: block;
-      cursor: pointer;
-    }
-
-    nav a:hover {
-      color: var(--neon-purple);
-      transform: translateX(5px);
+      box-shadow: none; /* No glowing effect */
     }
 
     .content {
@@ -194,96 +194,16 @@
       <h1>Sylvia's Website</h1>
     </header>
 
-    <div class="container">
-      <nav>
-        <ul>
-          <li><a onclick="switchTab('home')">Home</a></li>
-          <li><a onclick="switchTab('fortune')">Fortune Telling</a></li>
-          <li><a onclick="switchTab('projects')">My Projects</a></li>
-        </ul>
-      </nav>
+    <!-- Tabs below header -->
+    <div class="tabs">
+      <button onclick="switchTab('home')">Home</button> |
+      <button onclick="switchTab('fortune')">Fortune Telling</button> |
+      <button onclick="switchTab('projects')">My Projects</button>
+    </div>
 
+    <div class="container">
       <div class="content">
         <div id="home" class="tab active">
-          <p>I'm Sylvia, a 16-year-old student.</p>
-          <p>This website is where I share my projects, ideas, and things I enjoy.</p>
-          <p>Feel free to explore and get to know me better!</p>
-          <p>You can reach me at <a href="mailto:sylviajhw@gmail.com" class="email-link">sylviajhw@gmail.com</a></p>
-        </div>
+          <p>I'm Sylvia, a 16-year-old student.</
 
-        <div id="fortune" class="tab">
-          <p>Welcome to fortune telling</p>
-        </div>
-
-        <div id="projects" class="tab">
-          <!-- You can add your projects here -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const nameText = "Sylvia Wang";
-    const taglineText = "> Code. Create. Connect.";
-
-    const nameElem = document.getElementById('name');
-    const taglineElem = document.getElementById('tagline');
-    const welcomeElem = document.getElementById('welcome');
-    const intro = document.getElementById('intro');
-    const mainContent = document.getElementById('main-content');
-
-    function typeWriter(text, element, delay = 100) {
-      return new Promise(resolve => {
-        let i = 0;
-        const interval = setInterval(() => {
-          element.textContent += text.charAt(i);
-          i++;
-          if (i === text.length) {
-            clearInterval(interval);
-            resolve();
-          }
-        }, delay);
-      });
-    }
-
-    function fadeIn(element, duration = 1000) {
-      element.style.transition = `opacity ${duration}ms ease`;
-      element.style.opacity = 1;
-      return new Promise(res => setTimeout(res, duration));
-    }
-
-    function fadeOut(element, duration = 1000) {
-      element.style.transition = `opacity ${duration}ms ease`;
-      element.style.opacity = 0;
-      return new Promise(res => setTimeout(res, duration));
-    }
-
-    async function playIntro() {
-      await typeWriter(nameText, nameElem, 150);
-      await new Promise(r => setTimeout(r, 500));
-      await typeWriter(taglineText, taglineElem, 100);
-      await new Promise(r => setTimeout(r, 1500));
-
-      // Fade out name and tagline before showing welcome
-      await fadeOut(nameElem, 800);
-      await fadeOut(taglineElem, 800);
-
-      // Fade in welcome
-      await fadeIn(welcomeElem, 3000);
-      await new Promise(r => setTimeout(r, 2000));
-      await fadeOut(welcomeElem, 1000);
-
-      // Hide intro and show main content
-      intro.style.transition = 'opacity 1s ease';
-      intro.style.opacity = '0';
-      await new Promise(r => setTimeout(r, 1000));
-      intro.style.display = 'none';
-      mainContent.style.display = 'block';
-      document.body.style.overflow = 'auto';  // re-enable scroll
-    }
-
-    playIntro();
-  </script>
-</body>
-</html>
 
