@@ -11,8 +11,11 @@
       --neon-purple: #9d22ffcc;
       --neon-pink: #ff2299cc;
       --dark-bg: #121212;
+      --light-bg: #ffffff;
       --light-grey: #D3D3D3;
-      --header-glow: #9d22ff50;
+      --header-glow: #9d22ff50; /* Purple glow */
+      --dark-text: #fff;
+      --light-text: #000;
     }
 
     * {
@@ -34,6 +37,12 @@
       flex-direction: column;
       align-items: center;
       overflow: hidden;
+      transition: background 0.3s ease, color 0.3s ease; /* Smooth transition */
+    }
+
+    body.light-mode {
+      background: var(--light-bg);
+      color: var(--light-text);
     }
 
     /* Intro styles */
@@ -50,7 +59,11 @@
       z-index: 9999;
       font-family: 'Orbitron', monospace;
       color: var(--neon-purple);
-      transition: background 1s ease-out;
+      transition: background 1s ease-out; /* Smooth transition for background */
+    }
+
+    body.light-mode #intro {
+      color: var(--light-text);
     }
 
     #name {
@@ -77,7 +90,7 @@
       opacity: 0;
       color: var(--neon-pink);
       user-select: none;
-      transition: opacity 2s ease-in-out;
+      transition: opacity 2s ease-in-out; /* Smooth fading effect */
     }
 
     /* Header styles */
@@ -92,7 +105,11 @@
       align-items: center;
       justify-content: center;
       border-radius: 0;
-      box-shadow: 0 0 20px var(--header-glow);
+      box-shadow: 0 0 20px var(--header-glow); /* Purple glow */
+    }
+
+    body.light-mode header {
+      box-shadow: 0 0 20px #ccc; /* Light shadow in light mode */
     }
 
     header h1 {
@@ -100,6 +117,11 @@
       font-size: 5rem;
       color: var(--neon-purple);
       text-shadow: 0 0 10px var(--neon-purple);
+    }
+
+    body.light-mode header h1 {
+      color: var(--light-text); /* Black text in light mode */
+      text-shadow: none;
     }
 
     /* Tabs styles */
@@ -114,7 +136,7 @@
       background: transparent;
       border: none;
       font-family: 'Montserrat', sans-serif;
-      color: white;
+      color: white; /* White color for tabs */
       cursor: pointer;
       padding: 1rem 2rem;
       font-weight: bold;
@@ -122,111 +144,82 @@
     }
 
     .tabs button:hover {
-      color: var(--neon-pink);
+      color: var(--neon-pink); /* Pink color on hover */
       transform: translateX(5px);
     }
 
     .tabs button:not(:last-child)::after {
       content: " | ";
       margin: 0 10px;
-      color: white;
+      color: white; /* White separator */
     }
 
-    .container {
-      display: flex;
-      max-width: 1200px;
-      width: 100%;
-      padding-top: 10px;
-      flex-direction: column;
-      align-items: center;
+    body.light-mode .tabs button {
+      color: var(--light-text); /* Black text for tabs in light mode */
     }
 
-    .content {
-      max-width: 900px;
-      padding: 2rem;
-      margin-top: 20px;
+    body.light-mode .tabs button:hover {
+      color: var(--neon-pink); /* Pink on hover in light mode */
     }
 
-    .tab {
-      display: none;
-    }
-
-    .tab.active {
-      display: block;
-    }
-
-    .content p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #ccc;
-      margin-bottom: 1rem;
-    }
-
-    .email-link {
-      color: var(--neon-pink);
-      text-decoration: none;
-      font-weight: bold;
-      text-shadow: 0 0 5px var(--neon-pink);
-    }
-
-    /* Footer styles */
+    /* Footer */
     footer {
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
       background-color: var(--dark-bg);
       color: var(--light-grey);
-      text-align: center;
-      padding: 20px;
-      width: 100%;
-      position: relative;
-      bottom: 0;
-    }
-
-    footer p {
       font-size: 1.2rem;
-      margin-bottom: 10px;
     }
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+    body.light-mode footer {
+      background-color: var(--light-bg); /* White background for footer in light mode */
+      color: var(--light-text); /* Black text in light mode */
+    }
+
+    .social-icons {
+      margin-top: 10px;
     }
 
     .social-icon {
-      color: var(--neon-pink);
-      font-weight: bold;
+      color: var(--light-grey);
       text-decoration: none;
+      margin: 0 15px;
+      font-size: 1.8rem;
       transition: color 0.3s ease;
     }
 
-    .social-icon:hover {
-      color: var(--neon-cyan);
+    body.light-mode .social-icon {
+      color: var(--light-text); /* Black color for social icons in light mode */
     }
 
-    /* Dark mode styles */
-    body.light-theme {
-      background-color: white;
-      color: #333;
-    }
-
-    .theme-toggle {
-      background-color: transparent;
-      color: var(--neon-cyan);
-      border: 2px solid var(--neon-cyan);
-      padding: 0.5rem 1rem;
+    /* Toggle button */
+    .mode-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px;
+      background: var(--neon-pink);
+      border: none;
+      color: white;
       font-size: 1.2rem;
-      border-radius: 50px;
       cursor: pointer;
-      margin-top: 20px;
-      transition: all 0.3s ease;
+      border-radius: 5px;
+      z-index: 9999;
     }
 
-    .theme-toggle:hover {
+    .mode-toggle:hover {
       background-color: var(--neon-cyan);
-      color: #fff;
     }
+
   </style>
 </head>
 <body>
+  <!-- Toggle light/dark mode button -->
+  <button class="mode-toggle" onclick="toggleMode()">Toggle Light/Dark Mode</button>
+
   <!-- Intro animation section -->
   <div id="intro">
     <div id="name"></div>
@@ -252,7 +245,7 @@
         <div id="home" class="tab active">
           <p>I'm Sylvia, a 16-year-old student.</p>
           <p>Welcome to my personal site where I share my passions, projects, and ideas.</p>
-          <p>Feel free to reach out to me!</p>
+          <p>Feel free to reach out to me via <a href="mailto:sylviajhw@gmail.com" class="email-link">Gmail</a>.</p>
         </div>
 
         <div id="fortune" class="tab">
@@ -266,73 +259,65 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
-    <p>Connect with me:</p>
-    <div class="social-links">
-      <a href="https://github.com/Sylvia-w-ang" target="_blank" class="social-icon">GitHub</a>
-      <a href="https://www.instagram.com/sylvi_a_wang/" target="_blank" class="social-icon">Instagram</a>
+    <p>&copy; 2025 Sylvia. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://github.com/sylvia" class="social-icon" target="_blank">GitHub</a>
+      <a href="https://www.instagram.com/sylvia" class="social-icon" target="_blank">Instagram</a>
       <a href="mailto:sylviajhw@gmail.com" class="social-icon">Email</a>
     </div>
   </footer>
 
-  <button id="theme-toggle" class="theme-toggle">🌙 / 🌞</button>
-
   <script>
-    function switchTab(tabId) {
-      const tabs = document.querySelectorAll('.tab');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-    }
-
     // Intro animation: simulating typing effect
     let nameText = "Sylvia Wang";
-    let taglineText = " > Code. Create. Connect. ";
+    let taglineText = "Code. Create. Connect. ";
     let welcomeText = "Welcome";
+    let welcomeElem = document.getElementById('welcome');
+    let nameElem = document.getElementById('name');
+    let taglineElem = document.getElementById('tagline');
 
-    let nameElement = document.getElementById("name");
-    let taglineElement = document.getElementById("tagline");
-    let welcomeElement = document.getElementById("welcome");
+    let i = 0;
+    let j = 0;
+    let k = 0;
 
-    function typeEffect(element, text, callback) {
-      let i = 0;
-      let interval = setInterval(() => {
-        element.textContent += text[i];
+    function typeName() {
+      if (i < nameText.length) {
+        nameElem.innerHTML += nameText.charAt(i);
         i++;
-        if (i >= text.length) {
-          clearInterval(interval);
-          if (callback) callback();
-        }
-      }, 100);
+        setTimeout(typeName, 100);
+      } else {
+        typeTagline();
+      }
     }
 
-    typeEffect(nameElement, nameText, () => {
-      typeEffect(taglineElement, taglineText, () => {
-        welcomeElement.style.opacity = 1;
-        setTimeout(() => {
-          document.getElementById("intro").style.display = "none";
-          document.getElementById("main-content").style.display = "block";
-        }, 2000);
-      });
-    });
-
-    // Dark/Light Mode Toggle
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      document.body.classList.toggle('light-theme');
-      if (document.body.classList.contains('light-theme')) {
-        localStorage.setItem('theme', 'light');
+    function typeTagline() {
+      if (j < taglineText.length) {
+        taglineElem.innerHTML += taglineText.charAt(j);
+        j++;
+        setTimeout(typeTagline, 100);
       } else {
-        localStorage.setItem('theme', 'dark');
+        setTimeout(showWelcome, 1000);
       }
-    });
+    }
 
-    // Check for saved theme on page load
-    window.addEventListener('load', () => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'light') {
-        document.body.classList.add('light-theme');
-      }
-    });
+    function showWelcome() {
+      welcomeElem.style.opacity = 1;
+    }
+
+    typeName();
+
+    // Toggle light/dark mode
+    function toggleMode() {
+      document.body.classList.toggle("light-mode");
+    }
+
+    // Switch tabs functionality
+    function switchTab(tabName) {
+      let tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+    }
   </script>
 </body>
 </html>
