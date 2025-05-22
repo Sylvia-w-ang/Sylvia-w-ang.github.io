@@ -10,7 +10,6 @@
       --neon-cyan: #22c1ffcc;
       --neon-purple: #9d22ffcc;
       --neon-pink: #ff2299cc;
-      --neon-yellow: #fff200;
       --dark-bg: #121212;
       --light-grey: #D3D3D3;
       --sidebar-bg: #1a1a26;
@@ -26,7 +25,7 @@
     body {
       background: var(--dark-bg);
       font-family: 'Montserrat', sans-serif;
-      color: #ddd;
+      color: var(--light-grey);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -64,7 +63,7 @@
       padding: 1.5rem 1rem;
       border-radius: 12px;
       margin: 10px;
-      box-shadow: 0 0 12px var(--neon-yellow);
+      box-shadow: 0 0 12px var(--neon-purple);
       height: fit-content;
     }
 
@@ -114,52 +113,6 @@
 
     .email-link {
       color: var(--neon-pink);
-      text-decoration: none;
-      font-weight: bold;
-      text-shadow: 0 0 5px var(--neon-pink);
-    }
-  </style>
-  <script>
-    function switchTab(tabId) {
-      const tabs = document.querySelectorAll('.tab');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-    }
-  </script>
-</head>
-<body>
-  <header>
-    <h1>Welcome to Sylvia's Website</h1>
-  </header>
-  <div class="container">
-    <nav>
-      <ul>
-        <li><a onclick="switchTab('home')">Home</a></li>
-        <li><a onclick="switchTab('projects')">My Projects</a></li>
-        <li><a onclick="switchTab('taekwondo')">Taekwondo</a></li>
-        <li><a onclick="switchTab('gallery')">Gallery</a></li>
-      </ul>
-    </nav>
-    <div class="content">
-      <div id="home" class="tab active">
-        <p>I'm Sylvia, a 16-year-old student.</p>
-        <p>This website is where I share my projects, ideas, and things I enjoy.</p>
-        <p>Feel free to explore and get to know me better!</p>
-        <p>You can reach me at <a href="mailto:sylviajhw@gmail.com" class="email-link">sylviajhw@gmail.com</a></p>
-      </div>
-  
-      <div id="projects" class="tab">
-        <p>Projects will be added here.</p>
-      </div>
-      <div id="taekwondo" class="tab">
-        <p> Join me along my Taekwondo journey! </p>
-      <div id="gallery" class="tab">
-        <p>Gallery coming soon!</p>
-      </div>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
+      t
 
 
