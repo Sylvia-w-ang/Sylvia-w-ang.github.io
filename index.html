@@ -59,7 +59,8 @@
       z-index: 9999;
       font-family: 'Orbitron', monospace;
       color: var(--neon-purple);
-      transition: background 1s ease-out; /* Smooth transition for background */
+      opacity: 1;
+      transition: opacity 2s ease-out; /* Smooth fade out */
     }
 
     body.light-mode #intro {
@@ -269,55 +270,34 @@
   </footer>
 
   <script>
-    // Intro animation: simulating typing effect
-    let nameText = "Sylvia Wang";
-    let taglineText = "Code. Create. Connect. ";
-    let welcomeText = "Welcome";
-    let welcomeElem = document.getElementById('welcome');
-    let nameElem = document.getElementById('name');
-    let taglineElem = document.getElementById('tagline');
-
-    let i = 0;
-    let j = 0;
-    let k = 0;
-
-    function typeName() {
-      if (i < nameText.length) {
-        nameElem.innerHTML += nameText.charAt(i);
-        i++;
-        setTimeout(typeName, 100);
-      } else {
-        typeTagline();
-      }
-    }
-
-    function typeTagline() {
-      if (j < taglineText.length) {
-        taglineElem.innerHTML += taglineText.charAt(j);
-        j++;
-        setTimeout(typeTagline, 100);
-      } else {
-        setTimeout(showWelcome, 1000);
-      }
-    }
-
-    function showWelcome() {
-      welcomeElem.style.opacity = 1;
-    }
-
-    typeName();
-
     // Toggle light/dark mode
+    let isLightMode = false;
+
     function toggleMode() {
-      document.body.classList.toggle("light-mode");
+      isLightMode = !isLightMode;
+      document.body.classList.toggle("light-mode", isLightMode);
     }
 
-    // Switch tabs functionality
-    function switchTab(tabName) {
-      let tabs = document.querySelectorAll('.tab');
-      tabs.forEach(tab => tab.classList.remove('active'));
-      document.getElementById(tabName).classList.add('active');
+    // Fade out intro and display the main content
+    function fadeOutWelcome() {
+      document.getElementById('welcome').style.opacity = 0;
+      document.getElementById('intro').style.opacity = 0;
+      setTimeout(() => {
+        showMainContent();
+      }, 2000); // Wait until the intro is fully faded
     }
+
+    function showMainContent() {
+      document.getElementById('intro').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+    }
+
+    // Start the fade out process when the page loads
+    window.onload = () => {
+      setTimeout(() => {
+        fadeOutWelcome();
+      }, 2000); // Delay the fade to allow for intro animation
+    };
   </script>
 </body>
 </html>
