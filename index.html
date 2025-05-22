@@ -85,6 +85,11 @@
       font-size: 1.8rem;
     }
 
+    #name, #tagline {
+  transition: opacity 1s ease-in-out;
+}
+
+
     #welcome {
       position: absolute;
       font-size: 6rem;
@@ -301,5 +306,74 @@
   </script>
 </body>
 </html>
+
+<script>
+  // Toggle light/dark mode
+  let isLightMode = false;
+
+  function toggleMode() {
+    isLightMode = !isLightMode;
+    document.body.classList.toggle("light-mode", isLightMode);
+  }
+
+  // Fade out intro and display the main content
+  function fadeOutWelcome() {
+    document.getElementById('welcome').style.opacity = 0;
+    document.getElementById('intro').style.opacity = 0;
+    setTimeout(() => {
+      showMainContent();
+    }, 2000); // Wait until the intro is fully faded
+  }
+
+  function showMainContent() {
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+  }
+
+  // Typing animation logic
+  const nameText = "Sylvia Wang";
+  const taglineText = "> code. create. connect.";
+  const typingSpeed = 100; // ms per character
+
+  function typeText(elementId, text, callback) {
+    const el = document.getElementById(elementId);
+    let i = 0;
+    const interval = setInterval(() => {
+      el.textContent += text[i];
+      i++;
+      if (i === text.length) {
+        clearInterval(interval);
+        if (callback) setTimeout(callback, 1000); // short pause after typing
+      }
+    }, typingSpeed);
+  }
+
+  // Intro animation sequence
+  window.onload = () => {
+    // Step 1: Type the name
+    typeText("name", nameText, () => {
+      // Step 2: Then type the tagline
+      typeText("tagline", taglineText, () => {
+        // Step 3: Fade out name & tagline
+        setTimeout(() => {
+          document.getElementById("name").style.opacity = 0;
+          document.getElementById("tagline").style.opacity = 0;
+
+          // Step 4: Show welcome after fade
+          setTimeout(() => {
+            const welcome = document.getElementById("welcome");
+            welcome.style.opacity = 1;
+
+            // Step 5: Fade out welcome
+            setTimeout(() => {
+              fadeOutWelcome(); // fade out intro + welcome, then show main
+            }, 2000); // show welcome for 2 seconds
+          }, 1000); // wait 1s after name/tagline fade
+        }, 1000); // wait 1s before fading name/tagline
+      });
+    });
+  };
+</script>
+
 
 
