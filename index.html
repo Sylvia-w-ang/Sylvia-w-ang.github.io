@@ -131,19 +131,28 @@
     }
 
     .tabs button {
-      content: " | ";
-      margin: 0 10px;
-      color: white;
-      background: transparent;
-      border: none;
-      color: white;
-      margin: 0 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s, transform 0.2s;
-      font-size: inherit;
-    }
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.2s;
+  font-size: inherit;
+  padding: 0 1rem;
+  position: relative;
+}
 
+/* Add vertical divider using ::after pseudo-element */
+.tabs button:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background-color: var(--light-grey);
+  opacity: 0.3;
+}
     .tabs button:hover {
       color: var(--neon-yellow);
       transform: translateY(-3px);
