@@ -1,160 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Sylvia's Futuristic Site</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400&display=swap');
+  <meta charset="UTF-8" />
+  <title>Sylvia's Futuristic Site</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400&display=swap');
 
-  :root {
-    --neon-cyan: #22c1ffcc;
-    --neon-purple: #9d22ffcc;
-    --neon-pink: #ff2299cc;
-    --dark-bg: #121212;
-    --sidebar-bg: linear-gradient(135deg, #1f1f2e, #2e2e44);
-  }
+    :root {
+      --neon-cyan: #22c1ffcc;
+      --neon-purple: #9d22ffcc;
+      --neon-pink: #ff2299cc;
+      --dark-bg: #121212;
+      --sidebar-bg: #1e1e2f;
+      --header-bg: #1c1c2e;
+    }
 
-  * {
-    box-sizing: border-box;
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  body {
-    margin: 0;
-    background: var(--dark-bg);
-    font-family: 'Montserrat', sans-serif;
-    color: #ddd;
-    height: 100vh;
-    display: flex;
-    overflow: hidden;
-  }
-
-  .sidebar {
-    width: 280px;
-    background: var(--sidebar-bg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1.5rem;
-    border-right: 2px solid var(--neon-purple);
-    box-shadow:
-      inset 0 0 20px var(--neon-purple);
-  }
-
-  .sidebar h1 {
-    font-family: 'Orbitron', monospace;
-    font-weight: 600;
-    font-size: 3rem;
-    color: var(--neon-purple);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin: 0 0 1rem 0;
-    text-shadow:
-      0 0 8px var(--neon-purple),
-      0 0 15px var(--neon-purple);
-  }
-
-  .sidebar p {
-    font-weight: 500;
-    font-size: 1.2rem;
-    color: var(--neon-pink);
-    text-align: center;
-    text-shadow: 0 0 6px var(--neon-pink);
-  }
-
-  .content {
-    flex: 1;
-    padding: 3rem 4rem;
-    overflow-y: auto;
-  }
-
-  .content p {
-    font-size: 1.25rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    color: #bbb;
-    text-shadow:
-      0 0 3px var(--neon-cyan);
-  }
-
-  .email-link {
-    color: var(--neon-pink);
-    font-weight: 600;
-    text-decoration: none;
-    text-shadow:
-      0 0 5px var(--neon-pink);
-  }
-  .email-link:hover {
-    text-decoration: underline;
-  }
-
-  button {
-    background: transparent;
-    border: 2px solid var(--neon-cyan);
-    color: var(--neon-cyan);
-    font-family: 'Orbitron', monospace;
-    font-size: 1.2rem;
-    padding: 0.7rem 2.2rem;
-    border-radius: 35px;
-    cursor: pointer;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    box-shadow:
-      0 0 6px var(--neon-cyan),
-      0 0 18px var(--neon-cyan);
-    transition: all 0.3s ease;
-  }
-
-  button:hover {
-    background: var(--neon-cyan);
-    color: var(--dark-bg);
-    box-shadow:
-      0 0 15px var(--neon-cyan),
-      0 0 30px var(--neon-cyan);
-  }
-
-  /* Scrollbar style */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #1a1a1a;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--neon-purple);
-    border-radius: 10px;
-    box-shadow: 0 0 10px var(--neon-purple);
-  }
-
-  @media(max-width: 720px) {
     body {
+      background: var(--dark-bg);
+      font-family: 'Montserrat', sans-serif;
+      color: #ddd;
+      display: flex;
       flex-direction: column;
-      height: auto;
+      height: 100vh;
     }
-    .sidebar {
-      width: 100%;
-      border-right: none;
-      border-bottom: 2px solid var(--neon-purple);
-      padding: 1.5rem;
+
+    header {
+      background: var(--header-bg);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 0 15px var(--neon-purple);
     }
+
+    header h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.5rem;
+      color: var(--neon-purple);
+      text-shadow: 0 0 10px var(--neon-purple);
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+    }
+
+    nav {
+      width: 220px;
+      background: var(--sidebar-bg);
+      padding: 2rem 1rem;
+      box-shadow: inset 0 0 20px var(--neon-pink);
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav li {
+      margin-bottom: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--neon-cyan);
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-shadow: 0 0 5px var(--neon-cyan);
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--neon-pink);
+    }
+
     .content {
+      flex: 1;
       padding: 2rem;
+      overflow-y: auto;
     }
-  }
-</style>
+
+    .content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #ccc;
+      text-shadow: 0 0 3px var(--neon-cyan);
+      margin-bottom: 1rem;
+    }
+
+    .email-link {
+      color: var(--neon-pink);
+      text-decoration: none;
+      font-weight: bold;
+      text-shadow: 0 0 5px var(--neon-pink);
+    }
+  </style>
 </head>
 <body>
-  <div class="sidebar">
-    <h1>Hello!</h1>
-    <p>Welcome to Sylvia's Website</p>
-  </div>
-  <div class="content">
-    <p>This is my very first webpage.</p>
-    <p>I'm Sylvia, a 16-year-old student.</p>
-    <p>This website is where I share my projects, ideas, and things I enjoy.</p>
-    <p>Feel free to explore and get to know me better!</p>
-    <p>You can reach me at <a href="mailto:sylviajhw@gmail.com" class="email-link">sylviajhw@gmail.com</a></p>
-    <button>Explore More</button>
+  <header>
+    <h1>Welcome to Sylvia's Website</h1>
+  </header>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#projects">My Projects</a></li>
+        <li><a href="#taekwondo">Taekwondo</a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <p>This is my very first webpage.</p>
+      <p>I'm Sylvia, a 16-year-old student.</p>
+      <p>This website is where I share my projects, ideas, and things I enjoy.</p>
+      <p>Feel free to explore and get to know me better!</p>
+      <p>You can reach me at <a href="mailto:sylviajhw@gmail.com" class="email-link">sylviajhw@gmail.com</a></p>
+    </div>
   </div>
 </body>
 </html>
