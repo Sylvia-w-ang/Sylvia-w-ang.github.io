@@ -11,8 +11,8 @@
       --neon-purple: #9d22ffcc;
       --neon-pink: #ff2299cc;
       --dark-bg: #121212;
-      --sidebar-bg: #1e1e2f;
-      --header-bg: #1c1c2e;
+      --sidebar-bg: #1a1a26;
+      --header-bg: #181828;
     }
 
     * {
@@ -32,16 +32,17 @@
 
     header {
       background: var(--header-bg);
-      padding: 1.5rem 2rem;
+      padding: 1rem 2rem;
       text-align: center;
-      box-shadow: 0 0 15px var(--neon-purple);
+      box-shadow: 0 0 10px var(--neon-purple);
+      width: 100%;
     }
 
     header h1 {
       font-family: 'Orbitron', monospace;
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: var(--neon-purple);
-      text-shadow: 0 0 10px var(--neon-purple);
+      text-shadow: 0 0 8px var(--neon-purple);
     }
 
     .container {
@@ -50,14 +51,17 @@
       max-width: 1200px;
       margin: 0 auto;
       width: 100%;
+      padding-top: 10px;
     }
 
     nav {
-      width: 220px;
-      background: var(--sidebar-bg);
-      padding: 2rem 1rem;
-      box-shadow: inset 0 0 20px var(--neon-pink);
-      flex-shrink: 0;
+      width: 200px;
+      background: linear-gradient(to bottom, var(--sidebar-bg), #2a2a3d);
+      padding: 1.5rem 1rem;
+      border-radius: 12px;
+      margin: 10px;
+      box-shadow: 0 0 12px var(--neon-pink);
+      height: fit-content;
     }
 
     nav ul {
@@ -72,14 +76,15 @@
       text-decoration: none;
       color: var(--neon-cyan);
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: 1rem;
       text-shadow: 0 0 5px var(--neon-cyan);
-      transition: color 0.3s;
-      cursor: pointer;
+      transition: color 0.3s, transform 0.2s;
+      display: block;
     }
 
     nav a:hover {
       color: var(--neon-pink);
+      transform: translateX(5px);
     }
 
     .content {
@@ -142,7 +147,7 @@
         <p>Projects will be added here.</p>
       </div>
       <div id="taekwondo" class="tab">
-        <p>Information about my Taekwondo journey will go here.</p>
+        <p>Join me along my Taekwondo journey!</p>
       </div>
       <div id="gallery" class="tab">
         <p>Gallery coming soon!</p>
@@ -151,3 +156,4 @@
   </div>
 </body>
 </html>
+
