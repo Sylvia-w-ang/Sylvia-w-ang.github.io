@@ -12,8 +12,7 @@
       --neon-pink: #ff2299cc;
       --dark-bg: #121212;
       --light-grey: #D3D3D3;
-      --header-bg: #9d22ff;
-      --header-glow: #9d22ff50; /* Glowing purple */
+      --header-glow: #9d22ff50; /* Purple glow */
     }
 
     * {
@@ -51,6 +50,7 @@
       z-index: 9999;
       font-family: 'Orbitron', monospace;
       color: var(--neon-purple);
+      transition: background 1s ease-out; /* Smooth transition for background */
     }
 
     #name {
@@ -82,7 +82,6 @@
 
     /* Header styles */
     header {
-      background: var(--header-bg);
       height: 20vh;
       max-width: 1200px;
       width: 100%;
@@ -93,13 +92,13 @@
       align-items: center;
       justify-content: center;
       border-radius: 0;
-      box-shadow: 0 0 20px var(--header-glow); /* Purple glow around header */
+      box-shadow: 0 0 20px var(--header-glow); /* Purple glow */
     }
 
     header h1 {
       font-family: 'Orbitron', monospace;
-      font-size: 4rem;
-      color: white;
+      font-size: 5rem;
+      color: var(--neon-purple);
       text-shadow: 0 0 10px var(--neon-purple);
     }
 
@@ -108,7 +107,7 @@
       display: flex;
       justify-content: center;
       margin-top: 20px;
-      font-size: 1.1rem;
+      font-size: 1.6rem;
     }
 
     .tabs button {
@@ -117,7 +116,8 @@
       font-family: 'Montserrat', sans-serif;
       color: white; /* White color for tabs */
       cursor: pointer;
-      padding: 0.5rem 1rem;
+      padding: 1rem 2rem;
+      font-weight: bold;
       transition: color 0.3s, transform 0.2s;
     }
 
@@ -201,13 +201,13 @@
     <div class="container">
       <div class="content">
         <div id="home" class="tab active">
-          <p>I'm Sylvia, a 16-year-old student. <p>
+          <p>I'm Sylvia, a 16-year-old student.</p>
           <p>Welcome to my personal site where I share my passions, projects, and ideas.</p>
-           <p>Feel free to reach out to me via <a href="mailto:sylviajhw@gmail.com" class="email-link">Gmail</a>.</p>
+          <p>Feel free to reach out to me via <a href="mailto:sylviajhw@gmail.com" class="email-link">Gmail</a>.</p>
         </div>
 
         <div id="fortune" class="tab">
-          <p>Welcome to the world of furtune telling!</p>
+          <p>Welcome to the world of fortune telling!</p>
         </div>
 
         <div id="projects" class="tab">
@@ -220,9 +220,9 @@
   <script>
     // Intro animation: simulating typing effect
     let nameText = "Sylvia Wang";
-    let taglineText = "Code. Create. Connect. ";
+    let taglineText = "Code. Create. Connect";
     let welcomeText = "Welcome";
-    
+
     let nameElement = document.getElementById("name");
     let taglineElement = document.getElementById("tagline");
     let welcomeElement = document.getElementById("welcome");
@@ -236,25 +236,37 @@
           clearInterval(interval);
           if (callback) callback();
         }
-      }, 50); // Speed of typing
+      }, 300); // Slowing down the typing speed (4 times slower)
     }
 
-    function showWelcomeMessage() {
-      welcomeElement.style.opacity = 1; // Fade in the "Welcome" message
+    function fadeOutNameAndTagline() {
+      nameElement.style.opacity = 0;
+      taglineElement.style.opacity = 0;
     }
 
-    // Type name and tagline, then show the "Welcome" message
+    function fadeOutWelcome() {
+      welcomeElement.style.opacity = 0; // Fully fade out "Welcome"
+    }
+
+    function showMainContent() {
+      document.getElementById("intro").style.display = 'none';
+      document.getElementById("main-content").style.display = 'block';
+    }
+
+    // Type name and tagline, then fade out the name and tagline, then fade out the "Welcome" message, 
+    // and finally reveal the main content
     typeEffect(nameElement, nameText, () => {
       typeEffect(taglineElement, taglineText, () => {
-        setTimeout(showWelcomeMessage, 500); // Show "Welcome" after a short delay
+        setTimeout(() => {
+          fadeOutNameAndTagline();
+          setTimeout(() => {
+            fadeOutWelcome();
+            setTimeout(showMainContent, 2000); // Stay black for 2 seconds before revealing the content
+          }, 1000); // Fade "Welcome" out after a brief pause
+        }, 1000); // Pause after name and tagline fade out
       });
     });
 
-    // Hide intro and reveal main content after typing effect
-    setTimeout(() => {
-      document.getElementById("intro").style.display = 'none';
-      document.getElementById("main-content").style.display = 'block';
-    }, 5000); // Hide intro after 5 seconds
   </script>
 </body>
 </html>
