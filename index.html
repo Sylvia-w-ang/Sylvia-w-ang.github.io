@@ -80,20 +80,22 @@
     }
 
     /* Main page styles */
+
     header {
-      background: var(--header-bg);
-      height: 50vh;
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto 20px auto;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 0 10px var(--neon-purple);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-    }
+  background: transparent; /* no background color */
+  height: 50vh;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto 20px auto;
+  padding: 0;              /* remove padding */
+  text-align: center;
+  box-shadow: none;        /* remove shadow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;        /* remove rounded corners */
+}
+
 
     header h1 {
       font-family: 'Orbitron', monospace;
