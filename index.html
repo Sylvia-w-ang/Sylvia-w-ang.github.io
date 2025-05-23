@@ -141,6 +141,56 @@
   padding: 0 1rem;
   position: relative;
 }
+    /* Profile Section */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.profile-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 20px var(--neon-purple);
+  border: 3px solid var(--neon-purple);
+}
+
+.profile-text {
+  max-width: 500px;
+  font-size: 1.2rem;
+  color: var(--light-grey);
+}
+
+.profile-text h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--neon-cyan);
+}
+
+/* Mission Section */
+.mission {
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mission h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--neon-pink);
+}
+
+.mission p {
+  font-size: 1.2rem;
+  color: var(--light-grey);
+}
+
 
 /* Add vertical divider using ::after pseudo-element */
 .tabs button:not(:last-child)::after {
@@ -192,6 +242,7 @@
     .social-icon:hover {
       color: var(--neon-pink);
     }
+    
   </style>
   
   
@@ -219,10 +270,32 @@
 
     <div class="tab-content">
       <div id="home" class="tab active">
-        <p>I'm Sylvia, a 16-year-old student.</p>
-        <p>Welcome to my personal site where I share my passions, projects, and ideas.</p>
-        <p>Feel free to reach out to me!</p>
-      </div>
+  <section class="profile">
+    <img src="your-profile-pic.jpg" alt="Sylvia Wang" class="profile-img" />
+    <div class="profile-text">
+      <h2>Hello! I'm Sylvia </h2>
+      <p>
+        I'm a 16-year-old student passionate about technology, design, and self-expression through code and creativity.
+        I created this site to share my projects and ideas.
+      </p>
+    </div>
+  </section>
+
+  <section class="mission">
+    <h2>My Mission</h2>
+    <p>
+      I believe that culture is meant to be shared — not just preserved. 
+      Fortune telling is a vibrant part of Taiwanese tradition, 
+      and my mission is to reintroduce it as a joyful, meaningful experience for people everywhere.
+      
+      This isn’t just about telling fortunes. 
+      It’s about creating moments of connection 
+      — laughter between friends, reflection with family, and curiosity that crosses borders. 
+      Whether it's reading fortunes with friends or bonding with family over playful predictions, 
+      my goal is to spark meaningful conversations, laughter, and a little magic.
+    </p>
+  </section>
+</div>
       <div id="fortune" class="tab">
         <p>Welcome to the world of fortune telling!</p>
       </div>
@@ -242,6 +315,7 @@
   </footer>
 
   <script>
+
     const nameText = "Sylvia Wang";
     const taglineText = "> code. create. connect.";
     const typingSpeed = 150;
