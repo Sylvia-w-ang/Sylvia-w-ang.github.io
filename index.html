@@ -109,8 +109,16 @@
   margin: 10px 0;
 }
 
+    body::after {
+  content: "";
+  display: block;
+  height: 5rem; /* or any value you want to allow overscroll */
+}
+
+
     /* Main Content */
     #main-content {
+  padding-bottom: 6rem; /* prevents content from hiding behind footer */
       display: none;
       padding: 2rem;
       text-align: center;
@@ -220,15 +228,15 @@
     }
 
     footer {
-      width: 100%;
-      text-align: center;
-      padding: 1rem;
-      position: fixed;
-      bottom: 0;
-      background-color: var(--dark-bg);
-      color: var(--light-grey);
-      font-size: 1.2rem;
-    }
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--dark-bg);
+  color: var(--light-grey);
+  font-size: 1.2rem;
+  position: relative; /* was fixed before */
+  bottom: 0;
+}
 
     .social-icons {
       margin-top: 10px;
