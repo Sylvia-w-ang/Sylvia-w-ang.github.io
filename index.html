@@ -241,16 +241,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;  /* space from above content */
+  margin-top: 30px;
+  /* existing styles you already have */
 }
 
-    #fortune-form-container h2 {
+#fortune-form-container h2 {
   font-family: 'Orbitron', monospace;
-  font-size: 1.9rem;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--neon-pink);
-  margin-bottom: 25px; /* more space below heading */
+  margin-bottom: 20px;
   text-align: center;
+  text-shadow: 0 0 8px var(--neon-pink);
+}
+    #fortune h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: 2rem;           /* similar size as form heading */
+  font-weight: 900;
+  color: var(--neon-pink);
+  margin-bottom: 20px;       /* space below heading */
+  text-align: center;
+  text-shadow: 0 0 8px var(--neon-pink);
 }
 
     
@@ -443,9 +454,9 @@
         </section>
       </div>
 
-     <div id="fortune" class="tab">
-  <h2>Fill out your info for a fortune</h2>
 
+<div id="fortune-form-container">
+  <h2>Fill out your info for a fortune</h2>
  <form id="fortune-form">
   <div class="fortune-field">
     <label for="name-input">Name</label>
