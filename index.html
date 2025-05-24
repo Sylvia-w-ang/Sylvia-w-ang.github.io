@@ -102,19 +102,7 @@
       display: none;
       padding: 2rem;
       text-align: center;
-      background-color: var(--dark-bg); /* dark background */
-      color: var(--light-grey);         /* light gray text */
-    }
-
-    /* Light mode */
-    body.light-mode #main-content {
-    background-color: #D3D3D3; /* light gray background */
-    color: black;              /* black text */
-    }
-
-    body.light-mode footer {
-    background-color: white;   /* white footer background */
-    color: black;              /* black footer text */
+      
     }
 
     header {
@@ -391,11 +379,7 @@
         });
       });
     };
-    const toggleBtn = document.getElementById('toggle-theme-btn');
-
-    toggleBtn.addEventListener('click', () => {
-     document.body.classList.toggle('light-mode');
-    });
+    
     
     // Theme toggle logic
     const toggleBtn = document.getElementById("theme-toggle");
