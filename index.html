@@ -334,9 +334,7 @@
 }
 
 #fortune-response {
-  max-width: 400px;
-  margin: 1.5rem auto 0;
-  padding: 15px 20px;
+  margin-top: 1rem;
   background: #111;
   border-radius: 12px;
   box-shadow: 0 0 10px var(--neon-cyan);
@@ -346,12 +344,10 @@
   min-height: 4rem;
   white-space: pre-wrap;
   text-align: center;
+  width: 100%;
+  padding: 15px 20px;
+
 }
-
-    /* Existing styles ... */
-
-
-
   </style>
 </head>
 <body>
@@ -402,24 +398,26 @@
         </section>
       </div>
 
-      <div class="fortune-container">
+     <div id="fortune" class="tab">
   <h2>Fill out your info for a fortune</h2>
-  <form id="fortune-form">
-    <div class="fortune-field">
-      <label for="name">Name:</label>
-      <input id="name" name="name" type="text" placeholder="Your name" required />
-    </div>
-    <div class="fortune-field">
-      <label for="birthdate">Birthdate:</label>
-      <input id="birthdate" name="birthdate" type="date" required />
-    </div>
-    <div class="fortune-field">
-      <label for="color">Favorite Color:</label>
-      <input id="color" name="color" type="text" placeholder="e.g. Blue" required />
-    </div>
-    <button type="submit">Get Fortune</button>
-  </form>
-  <div id="fortune-response"></div>
+
+  <div id="fortune-form-container">
+    <form id="fortune-form">
+      <label for="name">Name</label>
+      <input type="text" id="name-input" name="name" required />
+
+      <label for="birthdate">Birthdate</label>
+      <input type="date" id="birthdate-input" name="birthdate" required />
+
+      <label for="color">Favorite Color</label>
+      <input type="color" id="color-input" name="color" value="#22c1ff" />
+
+      <button type="submit">Get Your Fortune</button>
+    </form>
+
+    <!-- move fortune response inside the same container -->
+    <div id="fortune-response" style="margin-top: 1rem; white-space: pre-wrap;"></div>
+  </div>
 </div>
 
       <div id="projects" class="tab">
@@ -496,11 +494,7 @@
     };
 
  // New fortune form submission handler:
-  <script>
-  // Your existing JS code here...
-
-  // New fortune form submission handler:
-  document.getElementById('fortune-form').addEventListener('submit', async (e) => {
+    document.getElementById('fortune-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name = document.getElementById('name-input').value.trim();
@@ -535,12 +529,15 @@
       responseDiv.textContent = 'Failed to fetch fortune. Try again later.';
     }
   });
-
     
     
   </script>
 </body>
 </html>
+
+
+
+
 
 
 
