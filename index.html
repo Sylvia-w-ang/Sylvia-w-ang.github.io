@@ -350,69 +350,7 @@
 
     /* Existing styles ... */
 
-/* Add this at the end */
-.fortune-container {
-  background-color: #cce4ff;
-  border-radius: 8px;
-  padding: 20px;
-  width: 350px;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  margin: 20px auto;
-}
 
-.fortune-container h2 {
-  margin-bottom: 15px;
-  color: #003366;
-  font-weight: bold;
-  font-size: 1.25rem;
-  text-align: center;
-}
-
-.fortune-field {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.fortune-field label {
-  flex: 1;
-  font-weight: 600;
-  color: #003366;
-  min-width: 100px;
-}
-
-.fortune-field input {
-  flex: 2;
-  padding: 6px 8px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-button[type="submit"] {
-  width: 100%;
-  padding: 10px 0;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-#fortune-response {
-  margin-top: 15px;
-  font-style: italic;
-  color: #004080;
-  min-height: 40px;
-  text-align: center;
-}
 
   </style>
 </head>
@@ -558,41 +496,46 @@ button[type="submit"]:hover {
     };
 
  // New fortune form submission handler:
-    document.getElementById('fortune-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
+  <script>
+  // Your existing JS code here...
 
-  const name = document.getElementById('name').value.trim();
-  const birthdate = document.getElementById('birthdate').value;
-  const color = document.getElementById('color').value.trim();
+  // New fortune form submission handler:
+  document.getElementById('fortune-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  if (!name || !birthdate || !color) {
-    alert('Please fill out all fields.');
-    return;
-  }
+    const name = document.getElementById('name-input').value.trim();
+    const birthdate = document.getElementById('birthdate-input').value;
+    const color = document.getElementById('color-input').value.trim();
 
-  const responseDiv = document.getElementById('fortune-response');
-  responseDiv.textContent = "Generating your fortune...";
-
-  const prompt = `Give me a friendly and creative fortune for a person named ${name}, born on ${birthdate}, whose favorite color is ${color}.`;
-
-  try {
-    const response = await fetch('/api/fortune', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ question: prompt })
-    });
-
-    const data = await response.json();
-
-    if (data.error) {
-      responseDiv.textContent = `Error: ${data.error}`;
-    } else {
-      responseDiv.textContent = data.answer;
+    if (!name || !birthdate || !color) {
+      alert('Please fill out all fields.');
+      return;
     }
-  } catch (err) {
-    responseDiv.textContent = 'Failed to fetch fortune. Try again later.';
-  }
-});
+
+    const responseDiv = document.getElementById('fortune-response');
+    responseDiv.textContent = "Generating your fortune...";
+
+    const prompt = `Give me a friendly and creative fortune for a person named ${name}, born on ${birthdate}, whose favorite color is ${color}.`;
+
+    try {
+      const response = await fetch('/api/fortune', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ question: prompt })
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        responseDiv.textContent = `Error: ${data.error}`;
+      } else {
+        responseDiv.textContent = data.answer;
+      }
+    } catch (err) {
+      responseDiv.textContent = 'Failed to fetch fortune. Try again later.';
+    }
+  });
+
     
     
   </script>
