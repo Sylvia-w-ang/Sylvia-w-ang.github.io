@@ -10,10 +10,11 @@
       --neon-cyan: #22c1ffcc;
       --neon-purple: #9d22ffcc;
       --neon-pink: #ff2299cc;
+      --neon-yellow: #FFFF33;
       --dark-bg: #121212;
       --light-grey: #D3D3D3;
-      --header-glow: #9d22ff50;
-      --neon-yellow:#FFFF33;
+      --light-bg: #f4f4f4;
+      --dark-text: #121212;
     }
 
     * {
@@ -22,27 +23,24 @@
       padding: 0;
     }
 
-
     html, body {
-  height: auto;
-  min-height: 100vh; /* ensures at least full viewport height */
-  overflow-y: auto;
-  font-family: 'Montserrat', sans-serif;
-  background: var(--dark-bg);
-  color: var(--light-grey);
-  margin: 0;
-  padding: 0;
-  overscroll-behavior: contain; /* or auto */
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
-}
+      height: auto;
+      min-height: 100vh;
+      overflow-y: auto;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--dark-bg);
+      color: var(--light-grey);
+    }
 
+    body.light-mode {
+      background: var(--light-bg);
+      color: var(--dark-text);
+    }
 
     /* Intro Section */
     #intro {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       background: #111;
@@ -60,11 +58,8 @@
       border-right: 3px solid;
       padding-right: 10px;
       margin-bottom: 20px;
-      min-height: 3rem;
       white-space: nowrap;
       overflow: hidden;
-      opacity: 1;
-      transition: opacity 1s ease-in-out;
     }
 
     #name {
@@ -85,43 +80,31 @@
       transition: opacity 2s ease-in-out;
     }
 
-      #skip-intro {
-  margin-top: 50px;
-  padding: 12px 28px;
-  font-size: 1.2rem;
-  font-family: 'Montserrat', sans-serif;
-  background-color: #FFD700; /* Nice yellow */
-  color: black;              /* Black font */
-  border: none;
-  border-radius: 30px;       /* Rounded */
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px #FFD70088;
-}
+    #skip-intro {
+      margin-top: 50px;
+      padding: 12px 28px;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #FFD700;
+      color: black;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #FFD70088;
+    }
 
-#skip-intro:hover {
-  background-color: #FFC300;
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #FFD700cc;
-}
-  
-  #intro > * {
-  margin: 10px 0;
-}
+    #skip-intro:hover {
+      background-color: #FFC300;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #FFD700cc;
+    }
 
-    body::after {
-  content: "";
-  display: block;
-  height: 5rem; /* or any value you want to allow overscroll */
-}
-
-
-    /* Main Content */
     #main-content {
-  padding-bottom: 6rem; /* prevents content from hiding behind footer */
       display: none;
       padding: 2rem;
       text-align: center;
+      padding-bottom: 6rem;
     }
 
     header {
@@ -129,7 +112,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 0 20px var(--header-glow);
+      box-shadow: 0 0 20px var(--neon-purple);
+      position: relative;
     }
 
     header h1 {
@@ -137,6 +121,24 @@
       font-size: 5rem;
       color: var(--neon-purple);
       text-shadow: 0 0 10px var(--neon-purple);
+    }
+
+    #theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      padding: 10px;
+      background: transparent;
+      border: 2px solid var(--light-grey);
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--light-grey);
+      transition: transform 0.3s;
+    }
+
+    #theme-toggle:hover {
+      transform: scale(1.1);
     }
 
     .tabs {
@@ -147,73 +149,26 @@
     }
 
     .tabs button {
-  background: transparent;
-  border: none;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: color 0.3s, transform 0.2s;
-  font-size: inherit;
-  padding: 0 1rem;
-  position: relative;
-}
-    /* Profile Section */
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  padding: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+      background: transparent;
+      border: none;
+      color: inherit;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0 1rem;
+      position: relative;
+    }
 
+    .tabs button:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 25%;
+      height: 50%;
+      width: 1px;
+      background-color: currentColor;
+      opacity: 0.3;
+    }
 
-.profile-text {
-  max-width: 500px;
-  font-size: 1.2rem;
-  color: var(--light-grey);
-  text-align: center;
-}
-
-.profile-text h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: var(--neon-cyan);
-  text-align: center;
-}
-
-/* Mission Section */
-.mission {
-  padding: 2rem;
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.mission h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: var(--neon-pink);
-}
-
-.mission p {
-  font-size: 1.2rem;
-  color: var(--light-grey);
-  text-align: center;
-}
-
-
-/* Add vertical divider using ::after pseudo-element */
-.tabs button:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 25%;
-  height: 50%;
-  width: 1px;
-  background-color: var(--light-grey);
-  opacity: 0.3;
-}
     .tabs button:hover {
       color: var(--neon-yellow);
       transform: translateY(-3px);
@@ -227,16 +182,56 @@
       display: block;
     }
 
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .profile-text {
+      max-width: 500px;
+      font-size: 1.2rem;
+      color: inherit;
+      text-align: center;
+    }
+
+    .profile-text h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--neon-cyan);
+      text-align: center;
+    }
+
+    .mission {
+      padding: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .mission h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--neon-pink);
+    }
+
+    .mission p {
+      font-size: 1.2rem;
+      color: inherit;
+      text-align: center;
+    }
+
     footer {
-  width: 100%;
-  text-align: center;
-  padding: 1rem;
-  background-color: var(--dark-bg);
-  color: var(--light-grey);
-  font-size: 1.2rem;
-  position: relative; /* was fixed before */
-  bottom: 0;
-}
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--dark-bg);
+      color: var(--light-grey);
+      font-size: 1.2rem;
+    }
 
     .social-icons {
       margin-top: 10px;
@@ -253,10 +248,7 @@
     .social-icon:hover {
       color: var(--neon-purple);
     }
-    
   </style>
-  
-  
 </head>
 <body>
   <!-- Intro -->
@@ -271,6 +263,7 @@
   <div id="main-content">
     <header>
       <h1>Sylvia's Website</h1>
+      <button id="theme-toggle">🌙</button>
     </header>
 
     <div class="tabs">
@@ -281,36 +274,31 @@
 
     <div class="tab-content">
       <div id="home" class="tab active">
-  <section class="profile">
-    <div class="profile-text">
-      <h2>Hello! I'm Sylvia </h2>
-      <p>
-        I'm a 16-year-old student passionate about technology, design, and self-expression through code and creativity.
-        I created this site to share my projects and ideas.
-      </p>
-    </div>
-  </section>
+        <section class="profile">
+          <div class="profile-text">
+            <h2>Hello! I'm Sylvia </h2>
+            <p>
+              I'm a 16-year-old student passionate about technology, design, and self-expression through code and creativity.
+              I created this site to share my projects and ideas.
+            </p>
+          </div>
+        </section>
 
-  <section class="mission">
-    <h2>My Mission</h2>
-    <p>
-      I believe that culture is meant to be shared — not just preserved.
-      Fortune telling is a vibrant part of Taiwanese tradition, 
-      and my mission is to reintroduce it as a joyful, meaningful experience for people everywhere.
-      </p>
-                                          
-      </p>
-    <p>
-      This isn’t just about telling fortunes.
-      It’s about creating moments of connection 
-      — laughter between friends, reflection with family, and curiosity that crosses borders. 
-      Whether it's reading fortunes with friends or bonding with family over playful predictions, 
-      my goal is to spark meaningful conversations, laughter, and a little magic.
-    </p>
+        <section class="mission">
+          <h2>My Mission</h2>
+          <p>
+            I believe that culture is meant to be shared — not just preserved.
+            Fortune telling is a vibrant part of Taiwanese tradition, 
+            and my mission is to reintroduce it as a joyful, meaningful experience for people everywhere.
+          </p>
+          <p>
+            This isn’t just about telling fortunes.
+            It’s about creating moments of connection — laughter between friends, reflection with family,
+            and curiosity that crosses borders.
+          </p>
+        </section>
+      </div>
 
-  
-  </section>
-</div>
       <div id="fortune" class="tab">
         <p>Welcome to the world of fortune telling!</p>
       </div>
@@ -330,7 +318,6 @@
   </footer>
 
   <script>
-
     const nameText = "Sylvia Wang";
     const taglineText = "> code. create. connect.";
     const typingSpeed = 150;
@@ -356,19 +343,25 @@
     }
 
     function fadeOutWelcome() {
-      const welcome = document.getElementById("welcome");
-      welcome.style.opacity = 0;
+      document.getElementById("welcome").style.opacity = 0;
       document.getElementById("intro").style.opacity = 0;
       setTimeout(() => {
         document.getElementById("intro").style.display = "none";
         document.getElementById("main-content").style.display = "block";
       }, 2000);
     }
-    
-document.getElementById("skip-intro").addEventListener("click", () => {
-  document.getElementById("intro").style.display = "none";
-  document.getElementById("main-content").style.display = "block";
-});
+
+    document.getElementById("skip-intro").addEventListener("click", () => {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    });
+
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+      const icon = document.getElementById("theme-toggle");
+      icon.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
+    });
+
     window.onload = () => {
       typeText("name", nameText, () => {
         typeText("tagline", taglineText, () => {
@@ -376,11 +369,8 @@ document.getElementById("skip-intro").addEventListener("click", () => {
             document.getElementById("name").style.opacity = 0;
             document.getElementById("tagline").style.opacity = 0;
             setTimeout(() => {
-              const welcome = document.getElementById("welcome");
-              welcome.style.opacity = 1;
-              setTimeout(() => {
-                fadeOutWelcome();
-              }, 2000);
+              document.getElementById("welcome").style.opacity = 1;
+              setTimeout(fadeOutWelcome, 2000);
             }, 1000);
           }, 1000);
         });
@@ -389,6 +379,7 @@ document.getElementById("skip-intro").addEventListener("click", () => {
   </script>
 </body>
 </html>
+
 
 
 
