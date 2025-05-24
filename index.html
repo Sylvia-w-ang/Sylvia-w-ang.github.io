@@ -302,7 +302,23 @@
       </div>
 
       <div id="fortune" class="tab">
-        <p>Welcome to the world of fortune telling!</p>
+  <h2>Fill out your info for a fortune</h2>
+  <form id="fortune-form">
+    <label>
+      Your Name:<br />
+      <input type="text" id="name-input" required />
+    </label><br /><br />
+    <label>
+      Your Birthdate:<br />
+      <input type="date" id="birthdate-input" required />
+    </label><br /><br />
+    <label>
+      Your Favorite Color:<br />
+      <input type="text" id="color-input" required />
+    </label><br /><br />
+    <button type="submit">Get My Fortune</button>
+  </form>
+  <div id="fortune-response" style="margin-top: 1rem; white-space: pre-wrap;"></div>
       </div>
 
       <div id="projects" class="tab">
@@ -377,6 +393,43 @@
         });
       });
     };
+
+ // New fortune form submission handler:
+    document.getElementById('fortune-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name-input').value.trim();
+    const birthdate = document.getElementById('birthdate-input').value;
+    const color = document.getElementById('color-input').value.trim();
+
+    if (!name || !birthdate || !color) {
+      alert('Please fill out all fields.');
+      return;
+    }
+
+    const responseDiv = document.getElementById('fortune-response');
+    responseDiv.textContent = "Generating your fortune...";
+
+    const prompt = `Give me a friendly and creative fortune for a person named ${name}, born on ${birthdate}, whose favorite color is ${color}.`;
+
+    try {
+      const response = await fetch('/api/fortune', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ question: prompt })
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        responseDiv.textContent = `Error: ${data.error}`;
+      } else {
+        responseDiv.textContent = data.answer;
+      }
+    } catch (err) {
+      responseDiv.textContent = 'Failed to fetch fortune. Try again later.';
+    }
+  });
     
     
   </script>
