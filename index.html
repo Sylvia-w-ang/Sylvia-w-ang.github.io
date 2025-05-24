@@ -10,11 +10,10 @@
       --neon-cyan: #22c1ffcc;
       --neon-purple: #9d22ffcc;
       --neon-pink: #ff2299cc;
-      --neon-yellow: #FFFF33;
       --dark-bg: #121212;
       --light-grey: #D3D3D3;
-      --light-bg: #f4f4f4;
-      --dark-text: #121212;
+      --header-glow: #9d22ff50;
+      --neon-yellow: #FFFF33;
     }
 
     * {
@@ -26,21 +25,17 @@
     html, body {
       height: auto;
       min-height: 100vh;
-      overflow-y: auto;
       font-family: 'Montserrat', sans-serif;
       background: var(--dark-bg);
       color: var(--light-grey);
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
     }
 
-    body.light-mode {
-      background: var(--light-bg);
-      color: var(--dark-text);
-    }
-
-    /* Intro Section */
     #intro {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       background: #111;
@@ -60,6 +55,8 @@
       margin-bottom: 20px;
       white-space: nowrap;
       overflow: hidden;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
     }
 
     #name {
@@ -101,10 +98,10 @@
     }
 
     #main-content {
+      padding-bottom: 6rem;
       display: none;
       padding: 2rem;
       text-align: center;
-      padding-bottom: 6rem;
     }
 
     header {
@@ -112,8 +109,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 0 20px var(--neon-purple);
-      position: relative;
+      box-shadow: 0 0 20px var(--header-glow);
     }
 
     header h1 {
@@ -121,24 +117,6 @@
       font-size: 5rem;
       color: var(--neon-purple);
       text-shadow: 0 0 10px var(--neon-purple);
-    }
-
-    #theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 1.5rem;
-      padding: 10px;
-      background: transparent;
-      border: 2px solid var(--light-grey);
-      border-radius: 50%;
-      cursor: pointer;
-      color: var(--light-grey);
-      transition: transform 0.3s;
-    }
-
-    #theme-toggle:hover {
-      transform: scale(1.1);
     }
 
     .tabs {
@@ -151,9 +129,11 @@
     .tabs button {
       background: transparent;
       border: none;
-      color: inherit;
+      color: white;
       font-weight: bold;
       cursor: pointer;
+      transition: color 0.3s, transform 0.2s;
+      font-size: 2rem;
       padding: 0 1rem;
       position: relative;
     }
@@ -165,7 +145,7 @@
       top: 25%;
       height: 50%;
       width: 1px;
-      background-color: currentColor;
+      background-color: var(--light-grey);
       opacity: 0.3;
     }
 
@@ -194,7 +174,7 @@
     .profile-text {
       max-width: 500px;
       font-size: 1.2rem;
-      color: inherit;
+      color: var(--light-grey);
       text-align: center;
     }
 
@@ -202,7 +182,6 @@
       font-size: 2rem;
       margin-bottom: 0.5rem;
       color: var(--neon-cyan);
-      text-align: center;
     }
 
     .mission {
@@ -220,10 +199,10 @@
 
     .mission p {
       font-size: 1.2rem;
-      color: inherit;
-      text-align: center;
+      color: var(--light-grey);
     }
 
+    /* Footer styles */
     footer {
       width: 100%;
       text-align: center;
@@ -231,6 +210,12 @@
       background-color: var(--dark-bg);
       color: var(--light-grey);
       font-size: 1.2rem;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    footer.light {
+      background-color: white;
+      color: black;
     }
 
     .social-icons {
@@ -238,7 +223,7 @@
     }
 
     .social-icon {
-      color: var(--light-grey);
+      color: inherit;
       margin: 0 15px;
       font-size: 1.8rem;
       text-decoration: none;
@@ -247,6 +232,23 @@
 
     .social-icon:hover {
       color: var(--neon-purple);
+    }
+
+    /* Theme toggle button */
+    #theme-toggle {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10000;
+      background-color: var(--light-grey);
+      color: black;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
     }
   </style>
 </head>
@@ -263,7 +265,6 @@
   <div id="main-content">
     <header>
       <h1>Sylvia's Website</h1>
-      <button id="theme-toggle">🌙</button>
     </header>
 
     <div class="tabs">
@@ -276,7 +277,7 @@
       <div id="home" class="tab active">
         <section class="profile">
           <div class="profile-text">
-            <h2>Hello! I'm Sylvia </h2>
+            <h2>Hello! I'm Sylvia</h2>
             <p>
               I'm a 16-year-old student passionate about technology, design, and self-expression through code and creativity.
               I created this site to share my projects and ideas.
@@ -288,8 +289,8 @@
           <h2>My Mission</h2>
           <p>
             I believe that culture is meant to be shared — not just preserved.
-            Fortune telling is a vibrant part of Taiwanese tradition, 
-            and my mission is to reintroduce it as a joyful, meaningful experience for people everywhere.
+            Fortune telling is a vibrant part of Taiwanese tradition, and my mission is to reintroduce it as a joyful,
+            meaningful experience for people everywhere.
           </p>
           <p>
             This isn’t just about telling fortunes.
@@ -302,13 +303,18 @@
       <div id="fortune" class="tab">
         <p>Welcome to the world of fortune telling!</p>
       </div>
+
       <div id="projects" class="tab">
         <p>My projects will be added here.</p>
       </div>
     </div>
   </div>
 
-  <footer>
+  <!-- Theme Toggle Button -->
+  <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
+
+  <!-- Footer -->
+  <footer id="page-footer">
     <p>&copy; 2025 Sylvia. All rights reserved.</p>
     <div class="social-icons">
       <a href="https://github.com/Sylvia-w-ang" class="social-icon" target="_blank">GitHub</a>
@@ -317,6 +323,7 @@
     </div>
   </footer>
 
+  <!-- JavaScript -->
   <script>
     const nameText = "Sylvia Wang";
     const taglineText = "> code. create. connect.";
@@ -343,7 +350,8 @@
     }
 
     function fadeOutWelcome() {
-      document.getElementById("welcome").style.opacity = 0;
+      const welcome = document.getElementById("welcome");
+      welcome.style.opacity = 0;
       document.getElementById("intro").style.opacity = 0;
       setTimeout(() => {
         document.getElementById("intro").style.display = "none";
@@ -354,12 +362,6 @@
     document.getElementById("skip-intro").addEventListener("click", () => {
       document.getElementById("intro").style.display = "none";
       document.getElementById("main-content").style.display = "block";
-    });
-
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-      document.body.classList.toggle("light-mode");
-      const icon = document.getElementById("theme-toggle");
-      icon.textContent = document.body.classList.contains("light-mode") ? "☀️" : "🌙";
     });
 
     window.onload = () => {
@@ -376,10 +378,22 @@
         });
       });
     };
+
+    // Theme toggle logic
+    const toggleBtn = document.getElementById("theme-toggle");
+    const footer = document.getElementById("page-footer");
+    let isLight = false;
+
+    toggleBtn.addEventListener("click", () => {
+      isLight = !isLight;
+      document.body.style.backgroundColor = isLight ? "white" : "var(--dark-bg)";
+      document.body.style.color = isLight ? "black" : "var(--light-grey)";
+      footer.classList.toggle("light", isLight);
+      toggleBtn.textContent = isLight ? "☀️" : "🌙";
+    });
   </script>
 </body>
 </html>
-
 
 
 
