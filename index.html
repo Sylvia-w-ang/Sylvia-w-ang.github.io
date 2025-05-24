@@ -292,10 +292,29 @@
   align-self: center; /* center heading */
 }
 
-    
+    .fortune-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
 .fortune-field label {
-  width: 130px; /* fixed width for label */
-  text-align: right;
+  flex: 0 0 120px; /* fixed width for all labels */
+  text-align: left;
+  font-weight: 600;
+  padding-right: 10px;
+}
+    
+.fortune-field input,
+.fortune-field select,
+.fortune-field textarea {
+  flex: 1; /* input takes remaining space */
+  max-width: 300px; /* max width for inputs */
+  padding: 8px 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .fortune-field input[type="color"] {
@@ -462,21 +481,22 @@
 <div id="fortune-form-container">
   <h2>Fill out your info for a fortune</h2>
  <form id="fortune-form">
-   
+  
   <div class="fortune-field">
-    <label for="name-input">Name</label>
-    <input type="text" id="name-input" name="name" required />
+    <label for="nameInput">Name:</label>
+    <input type="text" id="nameInput" name="name" placeholder="Your name" required />
   </div>
 
   <div class="fortune-field">
-    <label for="birthdate-input">Birthdate</label>
-    <input type="date" id="birthdate-input" name="birthdate" required />
+    <label for="birthdayInput">Birthday:</label>
+    <input type="date" id="birthdayInput" name="birthday" required />
   </div>
 
   <div class="fortune-field">
-    <label for="color-input">Favorite Color</label>
-    <input type="color" id="color-input" name="color" value="#22c1ff" />
+    <label for="colorInput">Favorite Color:</label>
+    <input type="color" id="colorInput" name="favoriteColor" value="#0000ff" />
   </div>
+
 
   <button type="submit">Get Your Fortune</button>
 </form>
