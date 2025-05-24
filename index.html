@@ -347,6 +347,73 @@
   white-space: pre-wrap;
   text-align: center;
 }
+
+    /* Existing styles ... */
+
+/* Add this at the end */
+.fortune-container {
+  background-color: #cce4ff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 350px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+}
+
+.fortune-container h2 {
+  margin-bottom: 15px;
+  color: #003366;
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.fortune-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.fortune-field label {
+  flex: 1;
+  font-weight: 600;
+  color: #003366;
+  min-width: 100px;
+}
+
+.fortune-field input {
+  flex: 2;
+  padding: 6px 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#fortune-response {
+  margin-top: 15px;
+  font-style: italic;
+  color: #004080;
+  min-height: 40px;
+  text-align: center;
+}
+
   </style>
 </head>
 <body>
@@ -397,24 +464,25 @@
         </section>
       </div>
 
-      <div id="fortune" class="tab">
+      <div class="fortune-container">
   <h2>Fill out your info for a fortune</h2>
-<div id="fortune-form-container">
-
   <form id="fortune-form">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" required />
-
-    <label for="birthdate">Birthdate</label>
-    <input type="date" id="birthdate" name="birthdate" required />
-
-    <label for="color">Favorite Color</label>
-    <input type="color" id="color" name="color" value="#22c1ff" />
-
-    <button type="submit">Get Your Fortune</button>
+    <div class="fortune-field">
+      <label for="name">Name:</label>
+      <input id="name" name="name" type="text" placeholder="Your name" required />
+    </div>
+    <div class="fortune-field">
+      <label for="birthdate">Birthdate:</label>
+      <input id="birthdate" name="birthdate" type="date" required />
+    </div>
+    <div class="fortune-field">
+      <label for="color">Favorite Color:</label>
+      <input id="color" name="color" type="text" placeholder="e.g. Blue" required />
+    </div>
+    <button type="submit">Get Fortune</button>
   </form>
-  <div id="fortune-response" style="margin-top: 1rem; white-space: pre-wrap;"></div>
-      </div>
+  <div id="fortune-response"></div>
+</div>
 
       <div id="projects" class="tab">
         <p>My projects will be added here.</p>
@@ -491,40 +559,40 @@
 
  // New fortune form submission handler:
     document.getElementById('fortune-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const name = document.getElementById('name-input').value.trim();
-    const birthdate = document.getElementById('birthdate-input').value;
-    const color = document.getElementById('color-input').value.trim();
+  const name = document.getElementById('name').value.trim();
+  const birthdate = document.getElementById('birthdate').value;
+  const color = document.getElementById('color').value.trim();
 
-    if (!name || !birthdate || !color) {
-      alert('Please fill out all fields.');
-      return;
+  if (!name || !birthdate || !color) {
+    alert('Please fill out all fields.');
+    return;
+  }
+
+  const responseDiv = document.getElementById('fortune-response');
+  responseDiv.textContent = "Generating your fortune...";
+
+  const prompt = `Give me a friendly and creative fortune for a person named ${name}, born on ${birthdate}, whose favorite color is ${color}.`;
+
+  try {
+    const response = await fetch('/api/fortune', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ question: prompt })
+    });
+
+    const data = await response.json();
+
+    if (data.error) {
+      responseDiv.textContent = `Error: ${data.error}`;
+    } else {
+      responseDiv.textContent = data.answer;
     }
-
-    const responseDiv = document.getElementById('fortune-response');
-    responseDiv.textContent = "Generating your fortune...";
-
-    const prompt = `Give me a friendly and creative fortune for a person named ${name}, born on ${birthdate}, whose favorite color is ${color}.`;
-
-    try {
-      const response = await fetch('/api/fortune', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ question: prompt })
-      });
-
-      const data = await response.json();
-
-      if (data.error) {
-        responseDiv.textContent = `Error: ${data.error}`;
-      } else {
-        responseDiv.textContent = data.answer;
-      }
-    } catch (err) {
-      responseDiv.textContent = 'Failed to fetch fortune. Try again later.';
-    }
-  });
+  } catch (err) {
+    responseDiv.textContent = 'Failed to fetch fortune. Try again later.';
+  }
+});
     
     
   </script>
