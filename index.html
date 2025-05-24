@@ -311,8 +311,6 @@
     </div>
   </div>
 
-  <!-- Theme Toggle Button -->
-  <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
 
   <!-- Footer -->
   <footer id="page-footer">
@@ -381,18 +379,6 @@
     };
     
     
-    // Theme toggle logic
-    const toggleBtn = document.getElementById("theme-toggle");
-    const footer = document.getElementById("page-footer");
-    let isLight = false;
-
-    toggleBtn.addEventListener("click", () => {
-      isLight = !isLight;
-      document.body.style.backgroundColor = isLight ? "white" : "var(--dark-bg)";
-      document.body.style.color = isLight ? "black" : "var(--light-grey)";
-      footer.classList.toggle("light", isLight);
-      toggleBtn.textContent = isLight ? "☀️" : "🌙";
-    });
   </script>
 </body>
 </html>
