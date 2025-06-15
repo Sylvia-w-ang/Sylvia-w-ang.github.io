@@ -102,7 +102,6 @@
       display: none;
       padding: 2rem;
       text-align: center;
-      
     }
 
     header {
@@ -203,7 +202,6 @@
       color: var(--light-grey);
     }
 
-    /* Footer styles */
     footer {
       width: 100%;
       text-align: center;
@@ -235,201 +233,115 @@
       color: var(--neon-purple);
     }
 
-    /* Fortune Telling */
-
     #fortune-form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-  /* existing styles you already have */
-}
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
 
-#fortune-form-container h2 {
-  font-family: 'Orbitron', monospace;
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--neon-pink);
-  margin-bottom: 20px;
-  text-align: center;
-  text-shadow: 0 0 8px var(--neon-pink);
-}
-    #fortune h2 {
-  font-family: 'Orbitron', monospace;
-  font-size: 2rem;           /* similar size as form heading */
-  font-weight: 900;
-  color: var(--neon-pink);
-  margin-bottom: 20px;       /* space below heading */
-  text-align: center;
-  text-shadow: 0 0 8px var(--neon-pink);
-}
+    #fortune-form-container h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--neon-pink);
+      margin-bottom: 20px;
+      text-align: center;
+      text-shadow: 0 0 8px var(--neon-pink);
+    }
 
-    
-  #fortune-form {
-  max-width: 400px; /* Adjust width as needed */
-  margin: 0 auto; /* Center horizontally */
-  background-color: #222;
-  padding: 30px 40px;
-  border-radius: 12px;
-  box-shadow:
-    0 0 15px var(--neon-pink),
-    0 0 30px var(--neon-purple),
-    0 0 50px var(--neon-pink);
-  font-family: 'Poppins', 'Montserrat', sans-serif;
-  color: var(--neon-yellow);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 22px;
-}
-
-    #fortune-form h2 {
-  font-family: 'Orbitron', monospace;
-  font-size: 1.9rem;
-  font-weight: 900;
-  color: var(--neon-pink);
-  margin-bottom: 10px;
-  align-self: center; /* center heading */
-}
+    #fortune-form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #222;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow:
+        0 0 15px var(--neon-pink),
+        0 0 30px var(--neon-purple),
+        0 0 50px var(--neon-pink);
+      font-family: 'Poppins', 'Montserrat', sans-serif;
+      color: var(--neon-yellow);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 22px;
+    }
 
     .fortune-field {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+    }
 
-.fortune-field label {
-  flex: 0 0 120px; /* fixed width for all labels */
-  text-align: left;
-  font-weight: 600;
-  padding-right: 10px;
-}
-    
-.fortune-field input,
-.fortune-field select,
-.fortune-field textarea {
-  flex: 1; /* input takes remaining space */
-  max-width: 300px; /* max width for inputs */
-  padding: 8px 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+    .fortune-field label {
+      width: 130px;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--neon-cyan);
+      font-family: 'Orbitron', monospace;
+      text-align: right;
+    }
 
-.fortune-field input[type="color"] {
-  flex: none; /* Don't stretch */
-  width: 70px; /* fixed width for the color picker */
-  height: 40px; /* bigger for easier clicking */
-  padding: 0; /* remove padding for color input */
-  border-radius: 8px;
-  cursor: pointer;
-}
-    
-#fortune form input[type="text"],
-#fortune form input[type="date"] {
-  width: 100%;
-  padding: 10px 14px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  background-color: #121212;
-  box-shadow: inset 0 0 5px #444;
-  transition: box-shadow 0.3s ease;
-  font-family: 'Poppins', 'Montserrat', sans-serif;
-}
-  #name-input {
-  flex: none;
-  width: 190px;
-}
+    .fortune-field input {
+      flex: 1;
+      padding: 10px 14px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background-color: #121212;
+      color: var(--light-grey);
+      box-shadow: inset 0 0 5px #444;
+      font-family: 'Poppins', 'Montserrat', sans-serif;
+      transition: box-shadow 0.3s ease;
+    }
 
-#fortune form input[type="text"]:focus,
-#fortune form input[type="date"]:focus {
-  outline: none;
-  border-color: var(--neon-pink);
-  box-shadow: 0 0 10px var(--neon-pink);
-}
+    .fortune-field input:focus {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 10px var(--neon-pink);
+    }
 
-#fortune-form button {
-  width: 100%;
-  background-color: var(--neon-yellow);
-  color: black;
-  font-weight: 800;
-  font-size: 1.3rem;
-  border: none;
-  border-radius: 30px;
-  padding: 14px 0;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 0 15px var(--neon-yellow);
-  font-family: 'Poppins', 'Montserrat', sans-serif;
-}
+    #fortune-form button {
+      width: 100%;
+      background-color: var(--neon-yellow);
+      color: black;
+      font-weight: 800;
+      font-size: 1.3rem;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 0 15px var(--neon-yellow);
+      font-family: 'Poppins', 'Montserrat', sans-serif;
+    }
 
-#fortune-form button:hover {
-  background-color: #ffc300;
-  transform: scale(1.05);
-  box-shadow: 0 0 25px #ffc300cc;
-}
+    #fortune-form button:hover {
+      background-color: #ffc300;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ffc300cc;
+    }
 
-#fortune-response {
-  margin-top: 1rem;
-  background: #111;
-  border-radius: 12px;
-  box-shadow: 0 0 10px var(--neon-cyan);
-  color: var(--light-grey);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.1rem;
-  min-height: 4rem;
-  white-space: pre-wrap;
-  text-align: center;
-  width: 100%;
-  padding: 15px 20px;
-
-  /* Add these: */
-  max-width: 400px; /* matches #fortune-form */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-    .fortune-field {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.fortune-field label {
-  width: 130px; /* fixed width so inputs align */
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: var(--neon-cyan);
-  font-family: 'Orbitron', monospace;
-  /* optional to right-align the label text */
-  text-align: right;
-}
-
-.fortune-field input {
-  flex: 1; /* input takes all remaining space */
-  padding: 10px 14px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  background-color: #121212;
-  color: var(--light-grey);
-  box-shadow: inset 0 0 5px #444;
-  font-family: 'Poppins', 'Montserrat', sans-serif;
-  transition: box-shadow 0.3s ease;
-}
-
-.fortune-field input:focus {
-  border-color: var(--neon-pink);
-  box-shadow: 0 0 10px var(--neon-pink);
-}
-
-    
+    .result-box {
+      margin-top: 1rem;
+      background: #111;
+      border-radius: 12px;
+      box-shadow: 0 0 10px var(--neon-cyan);
+      color: var(--light-grey);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      min-height: 4rem;
+      white-space: pre-wrap;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 15px 20px;
+    }
   </style>
 </head>
 <body>
@@ -473,47 +385,43 @@
             meaningful experience for people everywhere.
           </p>
           <p>
-            This isn’t just about telling fortunes.
-            It’s about creating moments of connection — laughter between friends, reflection with family,
+            This isn't just about telling fortunes.
+            It's about creating moments of connection — laughter between friends, reflection with family,
             and curiosity that crosses borders.
           </p>
-          </div>
         </section>
-      
-<section id="fortune" class="tab" role="tabpanel" aria-labelledby="tab-fortune" tabindex="0">
-<div id="fortune-form-container">
-  <h2>Fill out your info for a fortune</h2>
- <form id="fortune-form">
-  
-  <div class="fortune-field">
-    <label for="nameInput">Name:</label>
-    <input type="text" id="nameInput" name="name" placeholder="Your name" required />
-  </div>
-
-  <div class="fortune-field">
-    <label for="birthdayInput">Birthday:</label>
-    <input type="date" id="birthdayInput" name="birthday" required />
-  </div>
-
-  <div class="fortune-field">
-    <label for="colorInput">Favorite Color:</label>
-    <input type="color" id="colorInput" name="favoriteColor" value="#0000ff" />
-  </div>
-
-
-  <button type="submit">Get Your Fortune</button>
-</form>
-        <div id="fortune-response" aria-live="polite" role="status"></div>
       </div>
-    </section>
 
+      <div id="fortune" class="tab">
+        <div id="fortune-form-container">
+          <h2>Fill out your info for a fortune</h2>
+          <form id="fortune-form">
+            <div class="fortune-field">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+
+            <div class="fortune-field">
+              <label for="birthday">Birthday:</label>
+              <input type="text" id="birthday" name="birthday" placeholder="MM/DD" required />
+            </div>
+
+            <div class="fortune-field">
+              <label for="color">Favorite Color:</label>
+              <input type="text" id="color" name="color" placeholder="Your favorite color" required />
+            </div>
+
+            <button type="submit">Get Your Fortune</button>
+          </form>
+          <div id="fortune-response" class="result-box"></div>
+        </div>
+      </div>
 
       <div id="projects" class="tab">
         <p>My projects will be added here.</p>
       </div>
     </div>
   </div>
-
 
   <!-- Footer -->
   <footer id="page-footer">
@@ -580,46 +488,8 @@
         });
       });
     };
-
- // New fortune form submission handler:
-    document.getElementById('fortune-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById('name-input').value.trim();
-    const birthdate = document.getElementById('birthdate-input').value;
-    const color = document.getElementById('color-input').value.trim();
-
-    if (!name || !birthdate || !color) {
-      alert('Please fill out all fields.');
-      return;
-    }
-
-    const responseDiv = document.getElementById('fortune-response');
-    responseDiv.textContent = "Generating your fortune...";
-
-    const prompt = `Give me a friendly and creative fortune for a person named ${name}, born on ${birthdate}, whose favorite color is ${color}.`;
-
-    try {
-      const response = await fetch('https://fortune-teller-imhi.onrender.com', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ question: prompt })
-      });
-
-      const data = await response.json();
-
-      if (data.error) {
-        responseDiv.textContent = `Error: ${data.error}`;
-      } else {
-        responseDiv.textContent = data.answer;
-      }
-    } catch (err) {
-      responseDiv.textContent = 'Failed to fetch fortune. Try again later.';
-    }
-  });
-    
-    
   </script>
+  <script src="fortune-script.js"></script>
 </body>
 </html>
 
