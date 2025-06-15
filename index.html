@@ -600,7 +600,7 @@
     const prompt = `Give me a friendly and creative fortune for a person named ${name}, born on ${birthdate}, whose favorite color is ${color}.`;
 
     try {
-      const response = await fetch('/api/fortune', {
+      const response = await fetch('https://fortune-teller-imhi.onrender.com', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ question: prompt })
