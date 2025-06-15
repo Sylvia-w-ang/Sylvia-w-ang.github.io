@@ -50,7 +50,7 @@
         }
 
         /* Introduction Section */
-        .intro {
+        #intro {
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -61,20 +61,14 @@
             background: var(--dark-bg);
         }
 
-        .intro h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        #name, #tagline, #welcome {
+            font-size: 2rem;
+            margin: 1rem 0;
             color: var(--neon-purple);
+            text-shadow: 0 0 10px var(--neon-purple);
         }
 
-        .intro p {
-            font-size: 1.2rem;
-            color: var(--light-grey);
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        .skip-btn {
+        #skip-intro {
             padding: 0.8rem 2rem;
             background-color: var(--neon-purple);
             color: white;
@@ -83,14 +77,16 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background-color 0.3s ease;
+            margin-top: 2rem;
         }
 
-        .skip-btn:hover {
+        #skip-intro:hover {
             background-color: #8a1fd1;
         }
 
         /* Main Content */
-        .main-content {
+        #main-content {
+            display: none;
             padding-top: 80px;
         }
 
@@ -131,6 +127,14 @@
 
         .tab.active {
             color: var(--neon-yellow);
+        }
+
+        .tab-content > div {
+            display: none;
+        }
+
+        .tab-content > div.active {
+            display: block;
         }
 
         /* Fortune Form */
@@ -248,10 +252,10 @@
         <div id="name"></div>
         <div id="tagline"></div>
         <div id="welcome">Welcome</div>
-        <button id="skip-intro" class="skip-btn">Skip Intro</button>
+        <button id="skip-intro">Skip Intro</button>
     </div>
 
-    <main class="main-content">
+    <div id="main-content">
         <div class="tabs">
             <button class="tab active" onclick="switchTab('home')">Home</button>
             <button class="tab" onclick="switchTab('fortune')">Fortune Telling</button>
@@ -310,7 +314,7 @@
                 <p>My projects will be added here.</p>
             </div>
         </div>
-    </main>
+    </div>
 
     <footer id="page-footer">
         <p>&copy; 2025 Sylvia. All rights reserved.</p>
@@ -324,8 +328,8 @@
     <script src="fortune-script.js"></script>
     <script>
         const nameText = "Sylvia Wang";
-        const taglineText = " > Code. Create. Connect";
-        const welcomeText = "Welcome";
+        const taglineText = "Exploring the intersection of technology and creativity";
+        const welcomeText = "Welcome to my digital space";
 
         function typeText(element, text, speed = 100) {
             let i = 0;
@@ -351,18 +355,21 @@
         };
 
         function switchTab(tabName) {
+            // Hide all tabs
             const tabs = document.querySelectorAll('.tab');
             const contents = document.querySelectorAll('.tab-content > div');
             
             tabs.forEach(tab => tab.classList.remove('active'));
             contents.forEach(content => content.classList.remove('active'));
             
-            event.target.classList.add('active');
+            // Show selected tab
+            document.querySelector(`.tab[onclick="switchTab('${tabName}')"]`).classList.add('active');
             document.getElementById(tabName).classList.add('active');
         }
 
         document.getElementById('skip-intro').addEventListener('click', function() {
-            document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
         });
     </script>
 </body>
