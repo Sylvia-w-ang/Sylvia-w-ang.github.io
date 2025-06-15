@@ -30,9 +30,13 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('name').value.trim();
-            const birthday = document.getElementById('birthday').value.trim();
-            const colorHex = document.getElementById('color').value;
+            const nameInput = document.getElementById('name');
+            const birthdayInput = document.getElementById('birthday');
+            const colorInput = document.getElementById('color');
+            
+            const name = nameInput.value.trim();
+            const birthday = birthdayInput.value.trim();
+            const colorHex = colorInput.value;
             const color = getColorName(colorHex);
 
             console.log('Form submitted with:', { name, birthday, color }); // Debug log
@@ -69,6 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         hobby: 'creative expression'
                     })
                 });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
 
                 console.log('Response received:', response); // Debug log
                 const data = await response.json();
