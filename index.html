@@ -31,9 +31,11 @@
         /* Header Styles */
         header {
             height: 20vh;
-            display: none; /* Hidden during intro */
+            display: none;
             justify-content: center;
             align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px var(--neon-purple);
         }
 
         header h1 {
@@ -131,12 +133,12 @@
         }
 
         .tab:hover {
-            color: var(--neon-yellow);
+            color: var(--neon-purple);
             transform: translateY(-3px);
         }
 
         .tab.active {
-            color: var(--neon-yellow);
+            color: var(--neon-purple);
         }
 
         .tab-content > div {
@@ -145,6 +147,39 @@
 
         .tab-content > div.active {
             display: block;
+        }
+
+        /* Home Page Styles */
+        .profile-text h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--blue);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .profile-text p {
+            font-size: 1rem;
+            color: var(--light-grey);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+
+        .mission h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--tech-pink);
+            text-align: center;
+            margin: 2rem 0 1rem;
+        }
+
+        .mission p {
+            font-size: 1rem;
+            color: var(--light-grey);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 1rem;
         }
 
         /* Fortune Form */
@@ -169,6 +204,8 @@
             color: var(--blue);
             width: 150px;
             text-align: right;
+            font-family: 'Orbitron', monospace;
+            font-size: 1rem;
         }
 
         .fortune-field input {
@@ -180,6 +217,7 @@
             height: 40px;
             background-color: white;
             color: var(--dark-bg);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .fortune-field input:focus {
@@ -213,6 +251,7 @@
             transition: background-color 0.3s ease;
             width: 200px;
             margin-left: 150px;
+            font-family: 'Orbitron', monospace;
         }
 
         .fortune-btn:hover {
@@ -304,7 +343,7 @@
             <div id="fortune" class="tab">
                 <form id="fortune-form" class="fortune-form">
                     <div class="fortune-field">
-                        <label for="name">Name:</label>
+                        <label for="name">Your Name:</label>
                         <input type="text" id="name" name="name" placeholder="Your name" required>
                     </div>
                     <div class="fortune-field">
@@ -340,8 +379,8 @@
     <script src="fortune-script.js"></script>
     <script>
         const nameText = "Sylvia Wang";
-        const taglineText = "< code. create. connect";
-        const welcomeText = "Welcome";
+        const taglineText = "< code. create. connect >";
+        const welcomeText = "Welcome to my digital space";
 
         function typeText(element, text, speed = 100) {
             let i = 0;
@@ -374,6 +413,13 @@
                 welcomeElement.style.display = 'block';
                 typeText(welcomeElement, welcomeText);
             }, 4000);
+
+            // Auto-enter main page after welcome
+            setTimeout(() => {
+                document.getElementById('intro').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.querySelector('header').style.display = 'flex';
+            }, 6000);
         };
 
         function switchTab(tabName) {
