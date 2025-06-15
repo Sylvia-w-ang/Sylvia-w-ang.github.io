@@ -20,18 +20,35 @@ document.addEventListener('DOMContentLoaded', function() {
         return colors[hexColor.toLowerCase()] || 'blue';
     }
 
+    // Function to validate birthday format
+    function isValidBirthday(birthday) {
+        const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])$/;
+        return regex.test(birthday);
+    }
+
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        const name = document.getElementById('name').value;
-        const birthday = document.getElementById('birthday').value;
+        const name = document.getElementById('name').value.trim();
+        const birthday = document.getElementById('birthday').value.trim();
         const colorHex = document.getElementById('color').value;
         const color = getColorName(colorHex);
 
         console.log('Form submitted with:', { name, birthday, color }); // Debug log
 
-        if (!name || !birthday || !color) {
-            resultBox.innerHTML = '<p style="color: #ff4444;">Please fill in all fields</p>';
+        // Validate inputs
+        if (!name) {
+            resultBox.innerHTML = '<p style="color: #ff4444;">Please enter your name</p>';
+            return;
+        }
+
+        if (!birthday) {
+            resultBox.innerHTML = '<p style="color: #ff4444;">Please enter your birthday</p>';
+            return;
+        }
+
+        if (!isValidBirthday(birthday)) {
+            resultBox.innerHTML = '<p style="color: #ff4444;">Please enter birthday in MM/DD format (e.g., 12/25)</p>';
             return;
         }
 
