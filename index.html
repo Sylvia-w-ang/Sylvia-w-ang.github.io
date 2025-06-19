@@ -208,13 +208,26 @@
             font-size: 1.5rem;
         }
 
-        .fortune-field input {
+.fortune-field input {
   width: 100%;
   max-width: 350px;
-  padding: 0.5rem;
-  font-size: 1.2rem;
+  padding: 0.5rem 0.8rem;   /* Center text vertically */
+  font-size: 1.2rem;        /* Same size for all fields */
   line-height: 1.2rem;
   height: 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--light-grey);
+  background-color: black;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.fortune-field input::placeholder {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  color: rgba(255,255,255,0.6);
+  opacity: 1;
 }
 
 .fortune-field input::-webkit-input-placeholder {
@@ -259,13 +272,6 @@
   border: 1px solid rgba(255,255,255,0.2);
   border-radius: 5px;
   height: 40px;
-}
-
-.fortune-field input::placeholder {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  color: rgba(255,255,255,0.6);
-  opacity: 1;
 }
         
         .color-picker-container {
@@ -370,17 +376,16 @@
                     </p>
                 </section>
             </div>
-
             <div id="fortune" class="tab">
-                <form id="fortune-form" class="fortune-form">
-                    <div class="fortune-field">
-                        <label for="name">Your Name:</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="fortune-field">
-                        <label for="birthday">Birthday:</label>
-                        <input type="text" id="birthday" name="birthday" placeholder="MM/DD" required>
-                    </div>
+               <form class="fortune-form">
+  <div class="fortune-field">
+    <label>Your Name:</label>
+    <input type="text" placeholder="Your name">
+  </div>
+  <div class="fortune-field">
+    <label>Birthday:</label>
+    <input type="text" placeholder="MM/DD">
+  </div>
                     <div class="fortune-field">
                         <label for="color">Favorite Color:</label>
                         <div class="color-picker-container">
