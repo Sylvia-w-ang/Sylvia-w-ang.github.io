@@ -209,16 +209,27 @@
         }
 
         .fortune-field input {
-            padding: 0.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            font-size: 1.5rem;
-            width: 200px;
-            height: 40px;
-            background-color: black;
-            color: var(--light-grey);
-            font-family: 'Montserrat', sans-serif;
-        }
+  width: 100%;
+  max-width: 350px;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  height: 2.5rem;
+}
+
+.fortune-field input::-webkit-input-placeholder {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  position: relative;
+  top: 0;
+}
+
+.fortune-btn {
+  display: inline-block;
+  margin: 1rem auto 0;
+}
+        
+ 
 
 
 .fortune-form {
@@ -227,18 +238,6 @@
   text-align: center;
 }
 
-.fortune-btn {
-  padding: 0.8rem 2rem;
-  background-color: var(--neon-yellow);
-  color: black;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 1.5rem;
-  font-family: 'Orbitron', monospace;
-  display: inline-block;
-  margin: 1rem auto 0;
-}
 
 .fortune-field input {
   width: 100%;
