@@ -8,16 +8,32 @@ document.addEventListener('DOMContentLoaded', function() {
         return regex.test(birthday);
     }
 
+    // Function to validate birth year
+    function isValidBirthYear(year) {
+        const currentYear = new Date().getFullYear();
+        return year >= 1900 && year <= currentYear && year.toString().length === 4;
+    }
+
+    // Function to get Chinese zodiac animal
+    function getChineseZodiac(year) {
+        const animals = ['Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Goat', 'Monkey', 'Rooster', 'Dog', 'Pig'];
+        const emojis = ['🐀', '🐂', '🐅', '🐇', '🐉', '🐍', '🐎', '🐐', '🐒', '🐓', '🐕', '🐖'];
+        const index = (year - 1900) % 12;
+        return { animal: animals[index], emoji: emojis[index] };
+    }
+
     if (form) {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const nameInput = document.getElementById('name');
             const birthdayInput = document.getElementById('birthday');
+            const birthyearInput = document.getElementById('birthyear');
             const colorInput = document.getElementById('color');
             
             const name = nameInput.value.trim();
             const birthday = birthdayInput.value.trim();
+            const birthyear = birthyearInput.value.trim();
             const color = colorInput.value; // Direct color name from dropdown
 
             // Debug logging
@@ -39,11 +55,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            if (!birthyear) {
+                resultBox.innerHTML = '<p style="color: #ff4444;">Please enter your birth year</p>';
+                return;
+            }
+
+            if (!isValidBirthYear(birthyear)) {
+                resultBox.innerHTML = '<p style="color: #ff4444;">Please enter a valid birth year (1900-present)</p>';
+                return;
+            }
+
             resultBox.innerHTML = '<p>Getting your fortune...</p>';
 
             // Use local JS fortune logic
             setTimeout(() => {
-                const fortune = getLocalFortune(name, birthday, color);
+                const fortune = getLocalFortune(name, birthday, birthyear, color);
                 resultBox.innerHTML = fortune;
                 
                 // Track fortune telling event in Google Analytics
@@ -59,17 +85,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Local fortune-telling function
-    function getLocalFortune(name, birthday, color) {
+    function getLocalFortune(name, birthday, birthyear, color) {
         // Calculate a lucky number based on name
         const luckyNumber = name.split('').reduce((sum, c) => sum + c.charCodeAt(0), 0) % 9 + 1;
         
         // Create a more personalized spirit animal selection
         const nameSum = name.split('').reduce((sum, c) => sum + c.charCodeAt(0), 0);
         const birthdaySum = birthday.split('').reduce((sum, c) => sum + (parseInt(c) || 0), 0);
+        const birthyearSum = birthyear.split('').reduce((sum, c) => sum + (parseInt(c) || 0), 0);
         const colorValue = color.length;
         
         // Combine all factors for more personalized spirit animal
-        const totalValue = (nameSum + birthdaySum + colorValue) % 9;
+        const totalValue = (nameSum + birthdaySum + birthyearSum + colorValue) % 9;
         const finalSpiritNumber = totalValue === 0 ? 9 : totalValue;
         
         // Spirit animal based on personalized calculation
@@ -86,6 +113,25 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         const spiritAnimal = spiritAnimals[finalSpiritNumber];
+        
+        // Get Chinese zodiac based on birth year
+        const chineseZodiac = getChineseZodiac(parseInt(birthyear));
+        
+        // Chinese zodiac meanings with discussion prompts
+        const chineseZodiacMeanings = {
+            'Rat': 'You\'re resourceful and quick-witted. How do you handle unexpected challenges? Share a time when you had to think on your feet!',
+            'Ox': 'You\'re reliable and determined. What\'s something you\'ve worked hard to achieve? Tell us about your persistence!',
+            'Tiger': 'You\'re brave and competitive. What\'s a challenge you faced with courage? Share your boldest moment!',
+            'Rabbit': 'You\'re gentle and diplomatic. How do you handle conflicts with friends? Tell us about your peacemaking skills!',
+            'Dragon': 'You\'re confident and ambitious. What\'s a big goal you\'re working toward? Share your dreams!',
+            'Snake': 'You\'re wise and intuitive. When has your gut feeling been right? Tell us about your instincts!',
+            'Horse': 'You\'re energetic and adventurous. What\'s the most exciting thing you\'ve done recently? Share your adventures!',
+            'Goat': 'You\'re creative and kind. What\'s your favorite way to express yourself? Tell us about your artistic side!',
+            'Monkey': 'You\'re clever and playful. How do you solve problems creatively? Share a clever solution you came up with!',
+            'Rooster': 'You\'re organized and confident. What\'s something you\'re really good at? Tell us about your talents!',
+            'Dog': 'You\'re loyal and honest. Who\'s someone you\'re always there for? Share about your loyalty!',
+            'Pig': 'You\'re generous and optimistic. How do you help others feel better? Tell us about your kindness!'
+        };
         
         // Color meaning (English) - Discussion-focused for student engagement
         const colorMeaning = {
@@ -164,6 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         let colorMsg = colorMeaning[color] || 'Today will be a smooth and peaceful day!';
+        let chineseZodiacMsg = chineseZodiacMeanings[chineseZodiac.animal];
         
         return `<div class="lucky-number">${name}, your lucky number is ${luckyNumber}</div>
                 
@@ -173,8 +220,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="fortune-description">${spiritAnimal.meaning}</div>
                 </div>
                 
+                <div class="fortune-section">
+                    <div class="fortune-title">${chineseZodiac.emoji} CHINESE ZODIAC</div>
+                    <div class="fortune-subtitle">${chineseZodiac.animal} - ${birthyear}</div>
+                    <div class="fortune-description">${chineseZodiacMsg}</div>
+                </div>
+                
                 ${zodiac ? `<div class="fortune-section">
-                    <div class="fortune-title">${zodiacEmoji} ZODIAC INSIGHT</div>
+                    <div class="fortune-title">${zodiacEmoji} WESTERN ZODIAC</div>
                     <div class="fortune-subtitle">${zodiac} - ${zodiacTitle}</div>
                     <div class="fortune-description">${zodiacMeaning}</div>
                 </div>` : ''}
