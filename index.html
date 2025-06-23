@@ -57,7 +57,7 @@
             background: var(--dark-bg);
         }
 
-        #name {
+        #intro-name {
             font-family: 'Orbitron', monospace;
             font-size: 3rem;
             color: var(--light-grey);
@@ -344,7 +344,7 @@
     </header>
 
     <div id="intro">
-        <div id="name"></div>
+        <div id="intro-name"></div>
         <div id="tagline"></div>
         <div id="welcome"></div>
         <button id="skip-intro">Skip Intro</button>
@@ -384,14 +384,14 @@
                 </section>
             </div>
             <div id="fortune" class="tab">
-               <form class="fortune-form">
+               <form class="fortune-form" id="fortune-form">
   <div class="fortune-field">
-    <label>Your Name:</label>
-    <input type="text" placeholder="Your name">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" placeholder="Your name">
   </div>
   <div class="fortune-field">
-    <label>Birthday:</label>
-    <input type="text" placeholder="MM/DD">
+    <label for="birthday">Birthday:</label>
+    <input type="text" id="birthday" placeholder="MM/DD">
   </div>
                     <div class="fortune-field">
                         <label for="color">Favorite Color:</label>
@@ -403,7 +403,6 @@
                 </form>
                 <div id="fortune-response"></div>
             </div>
-=
         </div>
     </div>
 
@@ -436,7 +435,7 @@
         }
 
         window.onload = function() {
-            const nameElement = document.getElementById('name');
+            const nameElement = document.getElementById('intro-name');
             const taglineElement = document.getElementById('tagline');
             const welcomeElement = document.getElementById('welcome');
 
