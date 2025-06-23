@@ -39,8 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const colorHex = colorInput.value;
             const color = getColorName(colorHex);
 
-            console.log('Form submitted with:', { name, birthday, color }); // Debug log
-
             // Validate inputs
             if (!name) {
                 resultBox.innerHTML = '<p style="color: #ff4444;">Please enter your name</p>';
@@ -59,42 +57,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
             resultBox.innerHTML = '<p>Getting your fortune...</p>';
 
-            try {
-                console.log('Sending request to server...'); // Debug log
-                const response = await fetch('https://fortune-teller-imhi.onrender.com/api/fortune', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        birthday: birthday,
-                        color: color,
-                        hobby: 'creative expression'
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                console.log('Response received:', response); // Debug log
-                const data = await response.json();
-                console.log('Data:', data); // Debug log
-                
-                if (data.error) {
-                    resultBox.innerHTML = `<p style="color: #ff4444;">${data.error}</p>`;
-                } else {
-                    const formattedResponse = data.feedback
-                        .split('\n')
-                        .map(line => `<p>${line}</p>`)
-                        .join('');
-                    resultBox.innerHTML = formattedResponse;
-                }
-            } catch (error) {
-                console.error('Error:', error); // Debug log
-                resultBox.innerHTML = '<p style="color: #ff4444;">Sorry, something went wrong. Please try again!</p>';
-            }
+            // Use local JS fortune logic
+            setTimeout(() => {
+                const fortune = getLocalFortune(name, birthday, color);
+                resultBox.innerHTML = `<p>${fortune}</p>`;
+            }, 600);
         });
+    }
+
+    // Local fortune-telling function
+    function getLocalFortune(name, birthday, color) {
+        // Calculate a lucky number based on name
+        const luckyNumber = name.split('').reduce((sum, c) => sum + c.charCodeAt(0), 0) % 9 + 1;
+        // Color meaning (English)
+        const colorMeaning = {
+            'red': 'Passionate and energetic. Today is a great day to take initiative!',
+            'blue': 'Calm and logical. Good for planning and reflection.',
+            'green': 'Full of vitality. Try something new today.',
+            'yellow': 'Cheerful and lively. Perfect for making new friends.',
+            'purple': 'Mysterious and charming. Show your true self.',
+            'black': 'Low-key and steady. A good day for learning.',
+            'white': 'Pure and kind. Help others if you can.',
+            'orange': 'Creative and imaginative. Let your ideas flow.',
+            'magenta': 'Romantic and expressive. Share your feelings.',
+            'cyan': 'Fresh and unique. Take time to relax.'
+        };
+        // Zodiac (English)
+        let zodiac = '';
+        if (/^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])$/.test(birthday)) {
+            const [mm, dd] = birthday.split('/').map(Number);
+            if ((mm === 1 && dd >= 20) || (mm === 2 && dd <= 18)) zodiac = 'Aquarius';
+            else if ((mm === 2 && dd >= 19) || (mm === 3 && dd <= 20)) zodiac = 'Pisces';
+            else if ((mm === 3 && dd >= 21) || (mm === 4 && dd <= 19)) zodiac = 'Aries';
+            else if ((mm === 4 && dd >= 20) || (mm === 5 && dd <= 20)) zodiac = 'Taurus';
+            else if ((mm === 5 && dd >= 21) || (mm === 6 && dd <= 20)) zodiac = 'Gemini';
+            else if ((mm === 6 && dd >= 21) || (mm === 7 && dd <= 22)) zodiac = 'Cancer';
+            else if ((mm === 7 && dd >= 23) || (mm === 8 && dd <= 22)) zodiac = 'Leo';
+            else if ((mm === 8 && dd >= 23) || (mm === 9 && dd <= 22)) zodiac = 'Virgo';
+            else if ((mm === 9 && dd >= 23) || (mm === 10 && dd <= 22)) zodiac = 'Libra';
+            else if ((mm === 10 && dd >= 23) || (mm === 11 && dd <= 21)) zodiac = 'Scorpio';
+            else if ((mm === 11 && dd >= 22) || (mm === 12 && dd <= 21)) zodiac = 'Sagittarius';
+            else if ((mm === 12 && dd >= 22) || (mm === 1 && dd <= 19)) zodiac = 'Capricorn';
+                }
+        let colorMsg = colorMeaning[color] || 'Today will be a smooth and peaceful day!';
+        return `${name}, your lucky number is ${luckyNumber}.<br>Birthday: ${birthday} ${zodiac ? '(' + zodiac + ')' : ''}<br>Color advice: ${colorMsg}`;
     }
 });
