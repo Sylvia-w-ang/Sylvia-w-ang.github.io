@@ -291,7 +291,6 @@
             align-items: center;
         }
 
-
         .color-picker-container input[type="color"] {
             width: 200px;
             height: 40px;
@@ -301,7 +300,24 @@
             cursor: pointer;
         }
 
+        .color-select {
+            width: 200px;
+            height: 40px;
+            padding: 0.5rem 0.8rem;
+            font-size: 1.2rem;
+            font-family: 'Montserrat', sans-serif;
+            background-color: black;
+            color: var(--light-grey);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
+        .color-select option {
+            background-color: black;
+            color: var(--light-grey);
+            padding: 0.5rem;
+        }
 
         .fortune-btn:hover {
             background-color: --neon-yellow;
@@ -311,14 +327,65 @@
         #fortune-response 
         {
         margin: 2rem auto 0 auto;
-        padding: 1rem;
+        padding: 2rem;
         background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 5px;
+        border-radius: 15px;
         min-height: 100px;
         color: var(--light-grey);
         width: 100%;
-        max-width: 500px;
+        max-width: 600px;
         box-sizing: border-box;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        }
+
+        .fortune-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--neon-purple);
+        }
+
+        .fortune-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .fortune-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--neon-yellow);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px var(--neon-yellow);
+        }
+
+        .fortune-subtitle {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1rem;
+            color: var(--tech-pink);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .fortune-description {
+            color: var(--light-grey);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .lucky-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            color: var(--blue);
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(74, 144, 226, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(74, 144, 226, 0.3);
         }
 
         /* Footer */
@@ -405,9 +472,20 @@
   </div>
                     <div class="fortune-field">
                         <label for="color">Favorite Color:</label>
-                        <div class="color-picker-container">
-                            <input type="color" id="color" name="color" value="#0000ff">
-                        </div>
+                        <select id="color" name="color" class="color-select">
+                            <option value="red">❤️ Red</option>
+                            <option value="orange">🧡 Orange</option>
+                            <option value="yellow">💛 Yellow</option>
+                            <option value="green">💚 Green</option>
+                            <option value="cyan">💙 Cyan</option>
+                            <option value="blue">💙 Blue</option>
+                            <option value="purple">💜 Purple</option>
+                            <option value="magenta">💜 Magenta</option>
+                            <option value="pink">💗 Pink</option>
+                            <option value="black">⚫ Black</option>
+                            <option value="white">⚪ White</option>
+                            <option value="gray">🔘 Grey</option>
+                        </select>
                     </div>
                     <button type="submit" class="fortune-btn">Get Your Fortune</button>
                 </form>
@@ -498,26 +576,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
