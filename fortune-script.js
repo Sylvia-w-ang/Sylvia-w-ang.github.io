@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (form) {
-        form.addEventListener('submit', async function(e) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const nameInput = document.getElementById('name');
@@ -71,15 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 const fortune = getLocalFortune(name, birthday, birthyear, color);
                 resultBox.innerHTML = fortune;
-                
-                // Track fortune telling event in Google Analytics
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'fortune_telling', {
-                        'event_category': 'engagement',
-                        'event_label': color,
-                        'value': luckyNumber
-                    });
-                }
             }, 600);
         });
     }
