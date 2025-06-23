@@ -74,35 +74,35 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Spirit animal based on personalized calculation
         const spiritAnimals = {
-            1: { animal: 'Wolf', emoji: '🐺', title: 'PACK LEADER', meaning: 'Leadership and strong instincts guide your path. Trust your gut feelings and lead with confidence. Your natural authority draws others to follow your vision.' },
-            2: { animal: 'Owl', emoji: '🦉', title: 'WISE SAGE', meaning: 'Wisdom and intuition are your greatest allies. Your deep insights help you see through deception. Share your knowledge with others who seek guidance.' },
-            3: { animal: 'Butterfly', emoji: '🦋', title: 'TRANSFORMER', meaning: 'Transformation and change bring new opportunities. Embrace the beautiful evolution happening in your life. Your adaptability is your superpower.' },
-            4: { animal: 'Bear', emoji: '🐻', title: 'PROTECTOR', meaning: 'Strength and protection surround your journey. Your steady presence provides comfort to others. Stand firm in your convictions and defend what matters.' },
-            5: { animal: 'Eagle', emoji: '🦅', title: 'VISIONARY', meaning: 'Vision and freedom lift you to new heights. Your perspective sees the bigger picture. Soar above challenges and inspire others with your clarity.' },
-            6: { animal: 'Dolphin', emoji: '🐬', title: 'JOY BRINGER', meaning: 'Joy and emotional intelligence flow through you. Your playful spirit brightens everyone\'s day. Connect with others through laughter and empathy.' },
-            7: { animal: 'Lion', emoji: '🦁', title: 'COURAGEOUS HEART', meaning: 'Courage and inner strength lead your way. Your bravery inspires others to face their fears. Roar with confidence and claim your power.' },
-            8: { animal: 'Fox', emoji: '🦊', title: 'CLEVER ADAPTER', meaning: 'Adaptability and cleverness serve you well. Your quick thinking helps you navigate any situation. Trust your instincts and stay one step ahead.' },
-            9: { animal: 'Deer', emoji: '🦌', title: 'GENTLE GRACE', meaning: 'Gentleness and grace guide your interactions. Your peaceful nature creates harmony around you. Move through life with elegance and kindness.' }
+            1: { animal: 'Wolf', emoji: '🐺', title: 'PACK LEADER', meaning: 'You naturally take charge in group situations. Do you agree? Share a time when you stepped up to lead something!' },
+            2: { animal: 'Owl', emoji: '🦉', title: 'WISE SAGE', meaning: 'You\'re good at giving advice and seeing through problems. What\'s the best advice you\'ve ever given someone?' },
+            3: { animal: 'Butterfly', emoji: '🦋', title: 'TRANSFORMER', meaning: 'You adapt well to change and new situations. Tell us about a big change you handled well!' },
+            4: { animal: 'Bear', emoji: '🐻', title: 'PROTECTOR', meaning: 'You look out for others and stand up for what\'s right. Share a time when you protected or defended someone!' },
+            5: { animal: 'Eagle', emoji: '🦅', title: 'VISIONARY', meaning: 'You see the big picture and help others understand complex situations. How do you help friends see different perspectives?' },
+            6: { animal: 'Dolphin', emoji: '🐬', title: 'JOY BRINGER', meaning: 'You make people laugh and feel happy. What\'s your favorite way to cheer someone up?' },
+            7: { animal: 'Lion', emoji: '🦁', title: 'COURAGEOUS HEART', meaning: 'You\'re brave and face challenges head-on. Tell us about a time when you had to be courageous!' },
+            8: { animal: 'Fox', emoji: '🦊', title: 'CLEVER ADAPTER', meaning: 'You\'re quick-thinking and good at solving problems. Share a clever solution you came up with!' },
+            9: { animal: 'Deer', emoji: '🦌', title: 'GENTLE GRACE', meaning: 'You\'re kind and create harmony in groups. How do you help people get along better?' }
         };
         
         const spiritAnimal = spiritAnimals[finalSpiritNumber];
         
-        // Color meaning (English) - Enhanced with more distinct responses
+        // Color meaning (English) - Discussion-focused for student engagement
         const colorMeaning = {
-            'red': '🔥 FIRE ENERGY: Your passion burns bright! Take bold action today and trust your instincts. Great day for starting new projects or expressing your creativity.',
-            'blue': '🌊 WATER WISDOM: Your mind is clear and focused. Perfect time for deep thinking, planning, or having important conversations. Trust your logical side.',
-            'green': '🌱 GROWTH POWER: New opportunities are sprouting around you! Embrace change and try something you\'ve never done before. Nature will guide you.',
-            'yellow': '☀️ SUNSHINE VIBES: Your positive energy is contagious! Spread joy to others and make new connections. Your optimism will attract good things.',
-            'purple': '✨ MYSTICAL MAGIC: Your intuition is extra strong today. Trust your gut feelings and don\'t be afraid to show your unique personality.',
-            'black': '🖤 DEEP WISDOM: Your quiet strength is your superpower. Take time to reflect and learn something new. Your depth will impress others.',
-            'white': '🕊️ PURE HEART: Your kindness will make a difference today. Help someone in need and let your gentle spirit shine. Good karma is coming.',
-            'orange': '🎨 CREATIVE SPARK: Your imagination is on fire! Express yourself through art, writing, or any creative outlet. Your ideas are valuable.',
-            'magenta': '💕 LOVE VIBES: Your heart is open and ready for romance or deep connections. Share your feelings with someone special today.',
-            'cyan': '🧘 PEACE FINDER: Your calm energy brings balance to chaos. Take time to relax and recharge. Your peaceful presence helps others.',
-            'pink': '💖 SWEET CONNECTIONS: Your caring nature draws people to you. Reach out to friends or family and strengthen your relationships.',
-            'brown': '🌳 EARTH STRENGTH: Your practical approach will solve problems today. Stay grounded and focused on what really matters.',
-            'teal': '🦋 HARMONY SEEKER: Your balanced energy creates peace around you. Find harmony between work and play, logic and emotion.',
-            'gray': '⚖️ WISE BALANCE: Your neutral perspective helps you see all sides. Take time to think before acting. Your wisdom guides you well.'
+            'red': '🔥 FIRE ENERGY: You tend to be passionate and take action quickly. Do you agree? Share a time when your passion drove you to do something amazing!',
+            'blue': '🌊 WATER WISDOM: You prefer to think things through before acting. Is this true for you? Tell us about a time when careful planning paid off!',
+            'green': '🌱 GROWTH MINDSET: You love trying new things and learning. What\'s something new you\'ve tried recently? Share your experience with the group!',
+            'yellow': '☀️ SUNSHINE VIBES: Your positive energy brightens others\' days. How do you cheer up friends when they\'re feeling down?',
+            'purple': '✨ MYSTICAL MAGIC: You trust your intuition and have unique perspectives. Share a time when your gut feeling was right!',
+            'black': '🖤 DEEP THINKER: You prefer meaningful conversations over small talk. What\'s a topic you love discussing with friends?',
+            'white': '🕊️ PURE HEART: You naturally want to help others. Tell us about a time when you helped someone and how it made you feel!',
+            'orange': '🎨 CREATIVE SPARK: You love expressing yourself through art, music, or ideas. What\'s your favorite way to be creative?',
+            'magenta': '💕 LOVE VIBES: You\'re very caring and value close relationships. Who\'s someone important in your life and why?',
+            'cyan': '🧘 PEACE FINDER: You bring calm energy to stressful situations. How do you help others feel more relaxed?',
+            'pink': '💖 SWEET CONNECTIONS: You\'re great at making friends and keeping relationships strong. What\'s your secret to being a good friend?',
+            'brown': '🌳 EARTH STRENGTH: You\'re practical and reliable. What\'s something you\'re responsible for that others count on you for?',
+            'teal': '🦋 HARMONY SEEKER: You help people get along and find balance. Share a time when you helped resolve a conflict!',
+            'gray': '⚖️ WISE BALANCE: You see all sides of situations before making decisions. How do you handle difficult choices?'
         };
         
         // Zodiac (English) with emojis and enhanced meanings
