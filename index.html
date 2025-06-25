@@ -475,7 +475,7 @@
             color: var(--blue);
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 0.7em;
             margin-bottom: 1.2rem;
             padding: 0.7rem 1.5rem 0.7rem 2.2rem;
@@ -484,7 +484,18 @@
             border: none;
             box-shadow: none;
             text-shadow: none;
+            flex-wrap: nowrap;
+            min-width: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .lucky-number span {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
             white-space: nowrap;
+            display: inline-block;
         }
 
         /* Footer */
@@ -660,27 +671,24 @@
             max-width: 96vw;
             box-sizing: border-box;
         }
-        .fortune-title {
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 6px var(--neon-yellow), 0 0 10px var(--neon-yellow);
-            gap: 0.4rem;
-            padding-left: 0.15em;
-            min-height: 2em;
-        }
-        .fortune-title .fortune-emoji {
-            font-size: 1.1em;
-            margin-right: 0.2em;
-            margin-left: 0.08em;
-        }
-        .fortune-description {
-            font-size: 0.97rem;
-            margin-bottom: 0.3rem;
+        .fortune-title,
+        .fortune-subtitle,
+        .fortune-description,
+        .lucky-number {
+            text-align: left !important;
+            justify-content: flex-start !important;
         }
         .lucky-number {
-            font-size: 0.98rem;
-            padding: 0.5rem 0.7rem 0.5rem 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
             gap: 0.5em;
+        }
+        .fortune-title {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            justify-content: flex-start;
         }
         .profile-text h2 {
             font-size: 1.1rem;
