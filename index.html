@@ -15,6 +15,7 @@
     </script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -30,12 +31,18 @@
             --neon-yellow: #ffd700;
             --tech-pink: #ff69b4;
             --blue: #4a90e2;
+            --card-bg: rgba(30, 30, 40, 0.85);
+            --card-glow: 0 2px 16px 0 rgba(176,38,255,0.15);
+            --input-glow: 0 0 0 2px var(--neon-purple);
+            --tab-glow: 0 0 8px var(--neon-yellow);
+            --footer-gradient: linear-gradient(90deg, rgba(176,38,255,0.15) 0%, rgba(255,215,0,0.10) 100%);
         }
 
         body {
-            background-color: var(--dark-bg);
+            background: #000 !important;
             color: var(--light-grey);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         /* Header Styles */
@@ -51,6 +58,8 @@
         header h1 {
             font-family: 'Orbitron', monospace;
             font-size: clamp(1.5rem, 5vw, 3.5rem);
+            letter-spacing: 0.04em;
+            font-weight: 700;
             color: var(--neon-purple);
             text-shadow: 0 0 10px var(--neon-purple);
             margin-bottom: 1.2rem;
@@ -61,6 +70,9 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            background: linear-gradient(90deg, rgba(176,38,255,0.10) 0%, rgba(255,215,0,0.10) 100%);
+            border-radius: 12px;
+            box-shadow: 0 2px 16px 0 rgba(176,38,255,0.10);
         }
 
         /* Introduction Section */
@@ -77,41 +89,55 @@
 
         #intro-name {
             font-family: 'Orbitron', monospace;
-            font-size: 3rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
             color: var(--light-grey);
             margin: 1rem 0;
+            opacity: 1;
+            transition: opacity 1.1s cubic-bezier(0.4,0,0.2,1);
         }
 
         #tagline {
             font-family: 'Orbitron', monospace;
-            font-size: 2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
             color: var(--blue);
             margin: 1rem 0;
+            opacity: 1;
+            transition: opacity 1.1s cubic-bezier(0.4,0,0.2,1);
         }
 
         #welcome {
             font-family: 'Orbitron', monospace;
-            font-size: 2.5rem;
+            font-size: 2.7rem;
+            font-weight: 700;
             color: var(--tech-pink);
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             display: none;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
+            text-align: center;
         }
 
         #skip-intro {
             padding: 0.8rem 2rem;
-            background-color: var(--neon-yellow);
+            background: linear-gradient(90deg, var(--neon-yellow) 60%, var(--tech-pink) 100%);
             color: var(--dark-bg);
             border: none;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(255,215,0,0.15);
             margin-top: 2rem;
-            font-weight: bold;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
         }
 
         #skip-intro:hover {
-            background-color: #e6c200;
+            background: linear-gradient(90deg, var(--tech-pink) 0%, var(--neon-yellow) 100%);
+            color: var(--dark-bg);
+            box-shadow: 0 4px 16px rgba(255,215,0,0.25);
         }
 
         /* Main Content */
@@ -130,6 +156,7 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            align-items: center;
         }
 
         .tab {
@@ -142,6 +169,24 @@
             font-size: 2rem;
             padding: 0.7rem 1rem;
             position: relative;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .tab.active {
+            color: var(--neon-yellow);
+            background: transparent;
+            box-shadow: none;
+            text-shadow: none;
+        }
+
+        .tab:focus {
+            outline: 2px solid var(--neon-purple);
+        }
+
+        .tab:hover:not(.active) {
+            color: var(--tech-pink);
+            background: rgba(255, 105, 180, 0.08);
         }
 
         .tab-divider {
@@ -153,15 +198,6 @@
             display: inline-block;
             pointer-events: none;
             user-select: none;
-        }
-
-        .tab:hover {
-            color: var(--neon-yellow);
-            transform: translateY(-3px);
-        }
-
-        .tab.active {
-            color: var(--neon-yellow);
         }
 
         .tab-content > div {
@@ -183,6 +219,9 @@
             margin-bottom: 1rem;
             white-space: normal;
             word-break: break-word;
+            background: none !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
         }
 
         .profile-text p {
@@ -191,6 +230,9 @@
             text-align: center;
             max-width: 800px;
             margin: 0 auto 1rem;
+            background: none !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
         }
 
         .mission h2 {
@@ -199,6 +241,9 @@
             color: var(--tech-pink);
             text-align: center;
             margin: 2rem 0 1rem;
+            background: none !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
         }
 
         .mission p {
@@ -207,22 +252,30 @@
             text-align: center;
             max-width: 800px;
             margin: 0 auto 1rem;
+            background: none !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+        }
+
+        .mission {
+            margin-bottom: 0.2rem;
         }
 
         /* Fortune Form */
         .fortune-form {
-            background-color: rgba(255, 255, 255, 0.1);
+            background: #23232b;
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: none;
             max-width: 500px;
             margin: 0 auto;
+            border: none;
         }
 
         .fortune-field {
             margin-bottom: 1.5rem;
             display: flex;
-            align-items: right;
+            align-items: flex-end;
             gap: 1rem;
         }
 
@@ -233,76 +286,69 @@
             text-align: left;
             font-family: 'Orbitron', monospace;
             font-size: 1.5rem;
+            letter-spacing: 0.01em;
+            text-shadow: none;
         }
 
-.fortune-field input {
-  width: 100%;
-  max-width: 350px;
-  padding: 0.5rem 0.8rem;   /* Center text vertically */
-  font-size: 1.2rem;        /* Same size for all fields */
-  line-height: 1.2rem;
-  height: 2.5rem;
-  font-family: 'Montserrat', sans-serif;
-  color: rgba(255,255,255,0.4);
-  background-color: black;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 5px;
-  box-sizing: border-box;
-}
+        .fortune-field input {
+            width: 100%;
+            max-width: 350px;
+            padding: 0.5rem 0.8rem;   /* Center text vertically */
+            font-size: 1.2rem;        /* Same size for all fields */
+            line-height: 1.2rem;
+            height: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            color: rgba(255,255,255,0.4);
+            background-color: black;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: box-shadow 0.2s, border 0.2s;
+        }
 
-.fortune-field input::placeholder {
-  font-size: 1.2rem;
-  line-height: 1.2rem;
-  color: rgba(255,255,255,0.6);
-  opacity: 1;
-}
+        .fortune-field input:focus {
+            outline: none;
+            border: 1.5px solid var(--neon-purple);
+            box-shadow: var(--input-glow);
+        }
 
-.fortune-field input::-webkit-input-placeholder {
-  font-size: 1.2rem;
-  line-height: 1.2rem;
-  position: relative;
-  top: 0;
-}
+        .fortune-field input::placeholder {
+            font-size: 1.2rem;
+            line-height: 1.2rem;
+            color: rgba(255,255,255,0.6);
+            opacity: 1;
+        }
 
-.fortune-btn {
-  padding: 0.8rem 2rem;
-  background-color: #e6c200;
-  color: black;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 1.5rem;
-  font-family: 'Orbitron', monospace;
-  display: inline-block;
-  margin: 1rem auto 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
-}
+        .fortune-field input::-webkit-input-placeholder {
+            font-size: 1.2rem;
+            line-height: 1.2rem;
+            position: relative;
+            top: 0;
+        }
 
-        
- 
+        .fortune-btn {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, var(--neon-yellow) 60%, var(--tech-pink) 100%);
+            color: black;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-family: 'Orbitron', monospace;
+            display: inline-block;
+            margin: 1rem auto 0;
+            box-shadow: 0 2px 8px rgba(255,215,0,0.15);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+        }
 
+        .fortune-btn:hover {
+            background: linear-gradient(90deg, var(--tech-pink) 0%, var(--neon-yellow) 100%);
+            color: var(--dark-bg);
+            box-shadow: 0 4px 16px rgba(255,215,0,0.25);
+        }
 
-.fortune-form {
-  max-width: 500px;
-  margin: 0 auto;
-  text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-}
-
-
-.fortune-field input {
-  width: 100%;
-  max-width: 350px;
-  padding: 0.8rem;
-  font-size: 1.5rem;
-  font-family: 'Montserrat', sans-serif;
-  background-color: black;
-  color: var(--light-grey);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 5px;
-  height: 40px;
-}
-        
         .color-picker-container {
             display: flex;
             align-items: center;
@@ -328,6 +374,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 5px;
             cursor: pointer;
+            transition: box-shadow 0.2s, border 0.2s;
         }
 
         .color-select option {
@@ -336,61 +383,85 @@
             padding: 0.5rem;
         }
 
-        .fortune-btn:hover {
-            background-color: --neon-yellow;
-        }
-
-
-        #fortune-response 
-        {
-        margin: 2rem auto 0 auto;
-        padding: 2rem;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        min-height: 100px;
-        color: var(--light-grey);
-        width: 100%;
-        max-width: 600px;
-        box-sizing: border-box;
-        font-size: 1.1rem;
-        line-height: 1.8;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
+        .color-select:focus {
+            outline: none;
+            border: 1.5px solid var(--neon-purple);
+            box-shadow: var(--input-glow);
         }
 
         .fortune-section {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border-left: 4px solid var(--neon-purple);
+            margin-bottom: 1.7rem;
+            padding: 2.2rem 1.5rem 1.7rem 1.5rem;
+            background: #23232b;
+            color: #f0f0f0;
+            border-radius: 18px;
+            box-shadow: 0 8px 36px 0 rgba(176,38,255,0.18);
+            font-size: 1.12rem;
+            border: none;
+            width: 100%;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
         }
 
-        .fortune-section:last-child {
-            margin-bottom: 0;
+        .fortune-section::before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(180deg, #ffd700 0%, #b026ff 50%, #ff69b4 100%);
+            border-top-left-radius: 18px;
+            border-bottom-left-radius: 18px;
+        }
+
+        .fortune-section:hover, .fortune-section:focus {
+            transform: translateY(-6px) scale(1.025);
+            box-shadow: 0 12px 40px 0 rgba(255,215,0,0.18), 0 8px 36px 0 rgba(176,38,255,0.22);
+            z-index: 2;
         }
 
         .fortune-title {
             font-family: 'Orbitron', monospace;
-            font-size: 1.3rem;
-            font-weight: bold;
+            font-size: 1.35rem;
+            font-weight: 900;
             color: var(--neon-yellow);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px var(--neon-yellow);
+            margin-bottom: 1.1rem;
+            letter-spacing: 0.02em;
+            text-shadow: 0 0 8px var(--neon-yellow), 0 0 16px var(--neon-yellow);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .fortune-title .fortune-emoji {
+            font-size: 2.1em;
+            filter: drop-shadow(0 0 6px #ffd70088);
+            margin-right: 0.2em;
         }
 
         .fortune-subtitle {
             font-family: 'Orbitron', monospace;
-            font-size: 1.1rem;
+            font-size: 1.12rem;
             color: var(--tech-pink);
-            margin-bottom: 1rem;
-            font-weight: 600;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            text-shadow: none;
         }
 
         .fortune-description {
             color: var(--light-grey);
-            line-height: 1.7;
-            font-size: 1rem;
+            line-height: 1.8;
+            font-size: 1.13rem;
+            font-family: 'Comic Neue', 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-shadow: 0 1px 8px #00000022;
+            margin-bottom: 0.5rem;
         }
 
         .lucky-number {
@@ -400,164 +471,234 @@
             text-align: center;
             margin-bottom: 2rem;
             padding: 1rem;
-            background: rgba(74, 144, 226, 0.1);
+            background: #181820;
             border-radius: 10px;
-            border: 1px solid rgba(74, 144, 226, 0.3);
+            border: none;
+            box-shadow: none;
+            text-shadow: none;
         }
 
         /* Footer */
         footer {
             width: 100%;
             text-align: center;
-            padding: 1rem;
-            background-color: var(--dark-bg);
+            padding: 1.2rem 0 0.7rem 0;
+            background: var(--dark-bg);
             color: var(--light-grey);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.10);
         }
 
         .social-icons {
             margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
         }
 
         .social-icon {
             color: inherit;
-            margin: 0 15px;
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.3s, text-shadow 0.3s;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
         }
 
         .social-icon:hover {
             color: var(--neon-purple);
+            text-shadow: 0 0 8px var(--neon-purple);
+        }
+
+        /* Neon glow for focus accessibility */
+        .social-icon:focus {
+            outline: 2px solid var(--neon-yellow);
+            box-shadow: 0 0 8px var(--neon-yellow);
+        }
+
+        #fortune {
+            background: #000;
+            min-height: 100vh;
+        }
+
+        #home {
+            background: #000;
+            min-height: 100vh;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .disclaimer-emoji {
+            font-size: 1.3em;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+        .disclaimer-text {
+            text-align: left;
+            display: block;
         }
     </style>
     <style>
     @media (max-width: 600px) {
-      header h1 {
-        font-size: clamp(1.1rem, 7vw, 2.2rem);
-        text-align: center;
-        word-break: break-word;
-        padding: 0.3rem 0.3rem;
-        line-height: 1.2;
-        margin-bottom: 0.15rem;
-        max-width: 100vw;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .tabs {
-        font-size: 1.25rem;
-        flex-direction: row;
-        gap: 0;
-        margin: 0.05rem 0 0.3rem 0;
-        width: fit-content;
-        max-width: 100vw;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: center;
-        align-items: center;
-      }
-      .tab {
-        font-size: 1.25rem;
-        padding: 0.5rem 0.5rem;
-        min-width: 70px;
-        text-align: center;
-        border: none;
-        background: transparent;
-        display: inline-block;
-      }
-      .tab-divider {
-        color: var(--light-grey);
-        opacity: 0.7;
-        margin: 0 0.7rem;
-        font-size: 1.3em;
-        vertical-align: middle;
-        display: inline-block;
-        pointer-events: none;
-        user-select: none;
-      }
-      .tab-content {
-        margin-top: 0.7rem;
-      }
-      .fortune-form {
-        padding: 0.5rem;
-        max-width: 100vw;
-        min-width: 0;
-        border-radius: 0;
-      }
-      .fortune-field {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.2rem;
-        margin-bottom: 1rem;
-      }
-      .fortune-field label {
-        width: 100%;
-        font-size: 0.95rem;
-        text-align: left;
-        margin-bottom: 0.2rem;
-        padding-left: 0.1rem;
-      }
-      .fortune-field input,
-      .fortune-field select {
-        font-size: 1rem;
-        height: 38px;
-        max-width: 100%;
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 0.1rem;
-      }
-      .fortune-btn {
-        font-size: 1rem;
-        padding: 0.7rem 1.2rem;
-        width: 100%;
-        margin: 1rem 0 0 0;
-        border-radius: 8px;
-      }
-      #fortune-response {
-        padding: 0.7rem;
-        font-size: 1rem;
-        max-width: 100vw;
-      }
-      .fortune-section {
-        padding: 0.7rem;
-        margin-bottom: 0.7rem;
-        font-size: 1rem;
-      }
-      .fortune-title {
-        font-size: 1rem;
-      }
-      .fortune-subtitle {
-        font-size: 0.95rem;
-      }
-      .lucky-number {
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
-      .profile-text h2 {
-        font-size: 1.1rem;
-        white-space: normal;
-        word-break: break-word;
-        margin-top: 1.2rem;
-      }
-      .mission h2 {
-        font-size: 1.1rem;
-      }
-      .social-icons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.7rem;
-      }
-      .social-icon {
-        font-size: 1.1rem;
-        margin: 0;
-        padding: 0.3rem 0;
-      }
-      .profile-text p,
-      .mission p {
-        font-size: 0.92rem;
-      }
+        body {
+            background-color: var(--dark-bg);
+        }
+        header h1 {
+            font-size: clamp(1.1rem, 7vw, 2.2rem);
+            text-align: center;
+            word-break: break-word;
+            padding: 0.3rem 0.3rem;
+            line-height: 1.2;
+            margin-bottom: 0.15rem;
+            max-width: 100vw;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: linear-gradient(90deg, rgba(176,38,255,0.10) 0%, rgba(255,215,0,0.10) 100%);
+            border-radius: 12px;
+            box-shadow: 0 2px 16px 0 rgba(176,38,255,0.10);
+        }
+        .tabs {
+            font-size: 1.15rem;
+            flex-direction: row;
+            gap: 0;
+            margin: 0.05rem 0 0.3rem 0;
+            width: 100%;
+            max-width: 100vw;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tab {
+            font-size: 1.15rem;
+            padding: 0.5rem 0.5rem;
+            width: 50%;
+            text-align: center;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            outline: none;
+        }
+        .tab-divider {
+            color: var(--light-grey);
+            opacity: 0.7;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            font-size: 1.2em;
+            vertical-align: middle;
+            display: inline-block;
+            pointer-events: none;
+            user-select: none;
+        }
+        .tab-content {
+            margin-top: 0.7rem;
+        }
+        .fortune-form {
+            padding: 0.7rem;
+            max-width: 100vw;
+            min-width: 0;
+            border-radius: 0;
+            margin: 1rem auto;
+        }
+        .fortune-field {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.2rem;
+            margin-bottom: 1rem;
+        }
+        .fortune-field label {
+            width: 100%;
+            font-size: 0.95rem;
+            text-align: left;
+            margin-bottom: 0.2rem;
+            padding-left: 0.1rem;
+        }
+        .fortune-field input,
+        .fortune-field select {
+            font-size: 1rem;
+            height: 38px;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 0.1rem;
+        }
+        .fortune-btn {
+            font-size: 0.95rem;
+            padding: 0.6rem 1rem;
+            width: 100%;
+            margin: 1rem 0 0 0;
+            border-radius: 8px;
+        }
+        #fortune-response {
+            max-width: 100vw;
+            border-radius: 10px;
+            padding: 0.7rem 0.1rem;
+            margin: 1rem auto;
+            font-size: 1rem;
+        }
+        .fortune-section {
+            margin-bottom: 1.1rem;
+            padding: 1.1rem 0.4rem 0.9rem 0.4rem;
+            border-radius: 12px;
+            font-size: 1.04rem;
+            max-width: 98vw;
+        }
+        .fortune-title {
+            font-size: 1.18rem;
+            margin-bottom: 0.7rem;
+            text-shadow: 0 0 8px var(--neon-yellow), 0 0 16px var(--neon-yellow);
+            gap: 0.5rem;
+        }
+        .fortune-title .fortune-emoji {
+            font-size: 1.5em;
+        }
+        .fortune-description {
+            font-size: 1.04rem;
+            margin-bottom: 0.4rem;
+        }
+        .lucky-number {
+            font-size: 1rem;
+            padding: 0.5rem;
+        }
+        .profile-text h2 {
+            font-size: 1.1rem;
+            white-space: normal;
+            word-break: break-word;
+            margin-top: 1.2rem;
+        }
+        .profile-text p,
+        .mission p {
+            font-size: 0.92rem;
+        }
+        .mission h2 {
+            font-size: 1.1rem;
+        }
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .social-icon {
+            font-size: 1.1rem;
+            margin: 0;
+            padding: 0.3rem 0;
+        }
+        #fortune-disclaimer {
+            max-width: 100vw;
+            border-radius: 0;
+            padding: 0.7rem;
+            margin: 1rem auto;
+            font-size: 1rem;
+            gap: 0.5rem;
+        }
+        .fortune-section::before {
+            width: 6px;
+            height: 100%;
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            background: linear-gradient(180deg, #ffd700 0%, #b026ff 50%, #ff69b4 100%);
+        }
     }
     </style>
 </head>
@@ -658,9 +799,15 @@
                             <option value="🧦">🧦 Socks</option>
                         </select>
                     </div>
-                    <button type="submit" class="fortune-btn">Get Your Fortune</button>
+                    <div style="text-align:center;">
+                        <button type="submit" class="fortune-btn">Get Your Fortune</button>
+                    </div>
                 </form>
-                <div id="fortune-response"></div>
+                <div id="fortune-disclaimer" style="margin: 1.2rem auto 0.5rem auto; max-width: 500px; color: var(--neon-yellow); background: #181820; border-radius: 12px; padding: 1rem 1.2rem; font-size: 1.05rem; text-align: center; font-family: 'Montserrat', sans-serif; display: flex; align-items: center; gap: 0.7rem; justify-content: center; border: none; box-shadow: 0 0 16px 0 var(--neon-yellow); font-weight: 600; letter-spacing: 0.01em;">
+                  <span style="font-size:1.3em; vertical-align:middle;">⚡️</span>
+                  <span><strong>Disclaimer:</strong> This fortune-telling simulator is for <span style='color:var(--tech-pink);font-weight:600;'>entertainment</span> and <span style='color:var(--blue);font-weight:600;'>conversation</span> only. Please do not take any results as real advice, prediction, or guidance for important decisions.</span>
+                </div>
+                <div id="fortune-response" style="margin: 2rem auto 0 auto; max-width: 540px; width: 100%; box-sizing: border-box; min-height: 120px; background: #181820; border-radius: 16px; box-shadow: 0 0 24px 0 rgba(176,38,255,0.10); padding: 2.5rem 1.5rem; color: var(--light-grey); display: block;"></div>
             </div>
         </div>
     </div>
@@ -680,7 +827,7 @@
         const taglineText = "< code. create. connect. ";
         const welcomeText = "Welcome";
 
-        function typeText(element, text, speed = 50) {
+        function typeText(element, text, speed = 50, callback) {
             let i = 0;
             element.innerHTML = '';
             function type() {
@@ -688,6 +835,8 @@
                     element.innerHTML += text.charAt(i);
                     i++;
                     setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
                 }
             }
             type();
@@ -698,26 +847,39 @@
             const taglineElement = document.getElementById('tagline');
             const welcomeElement = document.getElementById('welcome');
 
-            // Type name
-            setTimeout(() => typeText(nameElement, nameText), 500);
-            
-            // Type tagline
-            setTimeout(() => typeText(taglineElement, taglineText), 2000);
-            
-            // Hide name and tagline, show welcome
+            // Type name, then tagline, then fade out both, then fade in welcome
             setTimeout(() => {
-                nameElement.style.display = 'none';
-                taglineElement.style.display = 'none';
-                welcomeElement.style.display = 'block';
-                typeText(welcomeElement, welcomeText);
-            }, 4000);
-
-            // Auto-enter main page after welcome
-            setTimeout(() => {
-                document.getElementById('intro').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                document.querySelector('header').style.display = 'flex';
-            }, 6000);
+                typeText(nameElement, nameText, 50, () => {
+                    setTimeout(() => {
+                        typeText(taglineElement, taglineText, 35, () => {
+                            setTimeout(() => {
+                                nameElement.style.opacity = 0;
+                                taglineElement.style.opacity = 0;
+                                setTimeout(() => {
+                                    nameElement.style.display = 'none';
+                                    taglineElement.style.display = 'none';
+                                    welcomeElement.style.display = 'block';
+                                    welcomeElement.style.opacity = 0;
+                                    welcomeElement.textContent = welcomeText;
+                                    // Fade in welcome
+                                    setTimeout(() => {
+                                        welcomeElement.style.opacity = 1;
+                                        // Fade out welcome and enter main page
+                                        setTimeout(() => {
+                                            welcomeElement.style.opacity = 0;
+                                            setTimeout(() => {
+                                                document.getElementById('intro').style.display = 'none';
+                                                document.getElementById('main-content').style.display = 'block';
+                                                document.querySelector('header').style.display = 'flex';
+                                            }, 1200);
+                                        }, 2000);
+                                    }, 50); // short delay to trigger transition
+                                }, 1100);
+                            }, 600);
+                        });
+                    }, 400);
+                });
+            }, 500);
         };
 
         function switchTab(tabName) {
