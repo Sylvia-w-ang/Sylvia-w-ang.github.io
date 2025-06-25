@@ -30,14 +30,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const birthdayInput = document.getElementById('birthday');
             const birthyearInput = document.getElementById('birthyear');
             const colorInput = document.getElementById('color');
+            const emojiPicker = document.getElementById('emoji-oracle-picker');
             
             const name = nameInput.value.trim();
             const birthday = birthdayInput.value.trim();
             const birthyear = birthyearInput.value.trim();
             const color = colorInput.value; // Direct color name from dropdown
+            const emoji = emojiPicker ? emojiPicker.value : '';
 
             // Debug logging
             console.log('Selected color:', color);
+            console.log('Selected emoji:', emoji);
 
             // Validate inputs
             if (!name) {
@@ -65,18 +68,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            if (!emoji) {
+                resultBox.innerHTML = '<p style="color: #ff4444;">Please select an emoji for the oracle</p>';
+                return;
+            }
+
             resultBox.innerHTML = '<p>Getting your fortune...</p>';
 
             // Use local JS fortune logic
             setTimeout(() => {
-                const fortune = getLocalFortune(name, birthday, birthyear, color);
+                const fortune = getLocalFortune(name, birthday, birthyear, color, emoji);
                 resultBox.innerHTML = fortune;
             }, 600);
         });
     }
 
     // Local fortune-telling function
-    function getLocalFortune(name, birthday, birthyear, color) {
+    function getLocalFortune(name, birthday, birthyear, color, emoji) {
         // Calculate a lucky number based on name
         const luckyNumber = name.split('').reduce((sum, c) => sum + c.charCodeAt(0), 0) % 9 + 1;
         
@@ -203,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let colorMsg = colorMeaning[color] || 'Today will be a smooth and peaceful day!';
         let chineseZodiacMsg = chineseZodiacMeanings[chineseZodiac.animal];
         
-        return `<div class="lucky-number">${name}, your lucky number is ${luckyNumber}</div>
+        let fortuneHtml = `<div class="lucky-number">${name}, your lucky number is ${luckyNumber}</div>
                 
                 <div class="fortune-section">
                     <div class="fortune-title">${spiritAnimal.emoji} SPIRIT ANIMAL</div>
@@ -227,5 +235,112 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="fortune-title">🎨 COLOR GUIDANCE</div>
                     <div class="fortune-description">${colorMsg}</div>
                 </div>`;
+        // Add emoji oracle card if selected
+        if (emojiOracleFortunes[emoji]) {
+            const f = emojiOracleFortunes[emoji];
+            fortuneHtml += `<div class=\"fortune-section\">
+                <div class=\"fortune-title\">${emoji} ${f.title}</div>
+                <div class=\"fortune-description\">${f.fortune}</div>
+                <div class=\"fortune-description\" style=\"margin-top:0.5rem;\">${f.prompt}</div>
+            </div>`;
+        }
+        return fortuneHtml;
+    }
+
+    // Emoji Oracle logic
+    const emojiOracleFortunes = {
+        "🌈": {
+            title: "Rainbow",
+            fortune: "You bring color and hope to every group!",
+            prompt: "What's something that always brightens your day?"
+        },
+        "🎨": {
+            title: "Palette",
+            fortune: "You're creative and love expressing yourself.",
+            prompt: "What's your favorite way to be creative?"
+        },
+        "🎲": {
+            title: "Dice",
+            fortune: "You're adventurous and love surprises.",
+            prompt: "What's the most spontaneous thing you've ever done?"
+        },
+        "🎈": {
+            title: "Balloon",
+            fortune: "You lift others' spirits.",
+            prompt: "What's a small thing that makes you happy?"
+        },
+        "🧩": {
+            title: "Puzzle Piece",
+            fortune: "You're a problem solver and love challenges.",
+            prompt: "What's a puzzle or riddle you've solved recently?"
+        },
+        "📚": {
+            title: "Books",
+            fortune: "You love stories and learning new things.",
+            prompt: "What's a book or story you'd recommend?"
+        },
+        "🏖️": {
+            title: "Beach",
+            fortune: "You know how to relax and enjoy the moment.",
+            prompt: "What's your dream vacation spot?"
+        },
+        "🕹️": {
+            title: "Joystick",
+            fortune: "You're playful and love games.",
+            prompt: "What's your favorite game to play with friends?"
+        },
+        "🧭": {
+            title: "Compass",
+            fortune: "You help others find their way.",
+            prompt: "What's a good piece of advice you've received?"
+        },
+        "🎤": {
+            title: "Microphone",
+            fortune: "You have a voice that should be heard.",
+            prompt: "What's a song you love to sing or listen to?"
+        },
+        "🧁": {
+            title: "Cupcake",
+            fortune: "You make life sweeter for those around you.",
+            prompt: "What's your favorite treat?"
+        },
+        "🪁": {
+            title: "Kite",
+            fortune: "You're free-spirited and love the outdoors.",
+            prompt: "What's your favorite outdoor activity?"
+        },
+        "🕯️": {
+            title: "Candle",
+            fortune: "You bring warmth and light to others.",
+            prompt: "What's something that makes you feel cozy?"
+        },
+        "🧳": {
+            title: "Suitcase",
+            fortune: "You're always ready for a new adventure.",
+            prompt: "Where would you travel if you could go anywhere?"
+        },
+        "🧦": {
+            title: "Socks",
+            fortune: "You're quirky and fun!",
+            prompt: "What's the silliest thing you own?"
+        }
+    };
+
+    const emojiPicker = document.getElementById('emoji-oracle-picker');
+    const emojiResult = document.getElementById('emoji-oracle-result');
+    if (emojiPicker && emojiResult) {
+        emojiPicker.addEventListener('change', function() {
+            const val = emojiPicker.value;
+            if (emojiOracleFortunes[val]) {
+                const f = emojiOracleFortunes[val];
+                emojiResult.innerHTML = `<div class="fortune-section">
+                    <div class="fortune-title" style="font-size:2rem;">${val} ${f.title}</div>
+                    <div class="fortune-description">${f.fortune}</div>
+                    <div class="fortune-description" style="margin-top:0.5rem;">${f.prompt}</div>
+                </div>`;
+            } else {
+                emojiResult.innerHTML = '';
+            }
+        });
     }
 });
