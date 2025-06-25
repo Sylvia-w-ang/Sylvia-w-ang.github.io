@@ -44,32 +44,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Validate inputs
             if (!name) {
-                resultBox.innerHTML = '<p style="color: #ff4444;">Please enter your name</p>';
+                resultBox.innerHTML = '<p style="color: #ff4444; text-shadow: none;">Please enter your name</p>';
                 return;
             }
 
             if (!birthday) {
-                resultBox.innerHTML = '<p style="color: #ff4444;">Please enter your birthday</p>';
+                resultBox.innerHTML = '<p style="color: #ff4444; text-shadow: none;">Please enter your birthday</p>';
                 return;
             }
 
             if (!isValidBirthday(birthday)) {
-                resultBox.innerHTML = '<p style="color: #ff4444;">Please enter birthday in MM/DD format (e.g., 12/25)</p>';
+                resultBox.innerHTML = '<p style="color: #ff4444; text-shadow: none;">Please enter birthday in MM/DD format (e.g., 12/25)</p>';
                 return;
             }
 
             if (!birthyear) {
-                resultBox.innerHTML = '<p style="color: #ff4444;">Please enter your birth year</p>';
+                resultBox.innerHTML = '<p style="color: #ff4444; text-shadow: none;">Please enter your birth year</p>';
                 return;
             }
 
             if (!isValidBirthYear(birthyear)) {
-                resultBox.innerHTML = '<p style="color: #ff4444;">Please enter a valid birth year (1900-present)</p>';
+                resultBox.innerHTML = '<p style="color: #ff4444; text-shadow: none;">Please enter a valid birth year (1900-present)</p>';
                 return;
             }
 
             if (!emoji) {
-                resultBox.innerHTML = '<p style="color: #ff4444;">Please select an emoji for the oracle</p>';
+                resultBox.innerHTML = '<p style="color: #ff4444; text-shadow: none;">Please select an emoji for the oracle</p>';
                 return;
             }
 
