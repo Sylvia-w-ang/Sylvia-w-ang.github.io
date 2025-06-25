@@ -123,7 +123,7 @@
         .tabs {
             display: flex;
             justify-content: center;
-            margin: 0.7rem 0 1.2rem 0;
+            margin: 0.2rem 0 0.7rem 0;
             font-size: 2rem;
             background: transparent;
             width: 100%;
@@ -140,16 +140,15 @@
             cursor: pointer;
             transition: color 0.3s, transform 0.2s;
             font-size: 2rem;
-            padding: 0.7rem 1rem;
+            padding: 0.7rem 0.7rem;
             position: relative;
         }
 
-        .tab:not(:last-child)::after {
+        .tab + .tab::before {
             content: '|';
             color: var(--light-grey);
             opacity: 0.7;
-            margin-left: 0.7rem;
-            margin-right: 0.7rem;
+            margin: 0 0.7rem;
             font-size: 1.2em;
             vertical-align: middle;
         }
@@ -438,7 +437,7 @@
         word-break: break-word;
         padding: 0.3rem 0.3rem;
         line-height: 1.2;
-        margin-bottom: 0.15rem;
+        margin-bottom: 0.05rem;
         max-width: 100vw;
         white-space: nowrap;
         overflow: hidden;
@@ -448,7 +447,7 @@
         font-size: 1rem;
         flex-direction: row;
         gap: 0;
-        margin: 0.1rem 0 0.5rem 0;
+        margin: 0.05rem 0 0.3rem 0;
         width: 100%;
         max-width: 100vw;
         margin-left: auto;
@@ -462,12 +461,11 @@
         border: none;
         background: transparent;
       }
-      .tab:not(:last-child)::after {
+      .tab + .tab::before {
         content: '|';
         color: var(--light-grey);
         opacity: 0.7;
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
+        margin: 0 0.5rem;
         font-size: 1.2em;
         vertical-align: middle;
       }
