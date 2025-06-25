@@ -50,7 +50,7 @@
 
         header h1 {
             font-family: 'Orbitron', monospace;
-            font-size: 3rem;
+            font-size: clamp(1.5rem, 5vw, 3.5rem);
             color: var(--neon-purple);
             text-shadow: 0 0 10px var(--neon-purple);
             margin-bottom: 1.2rem;
@@ -58,6 +58,9 @@
             line-height: 1.1;
             max-width: 100vw;
             padding: 0 1vw;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* Introduction Section */
@@ -122,9 +125,6 @@
             justify-content: center;
             margin: 0.7rem 0 1.2rem 0;
             font-size: 2rem;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--light-grey);
             background: transparent;
             width: 100%;
             max-width: 600px;
@@ -144,8 +144,14 @@
             position: relative;
         }
 
-        .tab:not(:last-child) {
-            border-right: 1px solid var(--light-grey);
+        .tab:not(:last-child)::after {
+            content: '|';
+            color: var(--light-grey);
+            opacity: 0.7;
+            margin-left: 0.7rem;
+            margin-right: 0.7rem;
+            font-size: 1.2em;
+            vertical-align: middle;
         }
 
         .tab:hover {
@@ -427,22 +433,22 @@
     <style>
     @media (max-width: 600px) {
       header h1 {
-        font-size: 1.4rem;
+        font-size: clamp(1.1rem, 7vw, 2.2rem);
         text-align: center;
         word-break: break-word;
         padding: 0.3rem 0.3rem;
         line-height: 1.2;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.15rem;
         max-width: 100vw;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .tabs {
         font-size: 1rem;
         flex-direction: row;
         gap: 0;
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1px solid var(--light-grey);
-        margin: 0.3rem 0 0.7rem 0;
+        margin: 0.1rem 0 0.5rem 0;
         width: 100%;
         max-width: 100vw;
         margin-left: auto;
@@ -456,8 +462,14 @@
         border: none;
         background: transparent;
       }
-      .tab:not(:last-child) {
-        border-right: 1px solid var(--light-grey);
+      .tab:not(:last-child)::after {
+        content: '|';
+        color: var(--light-grey);
+        opacity: 0.7;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        font-size: 1.2em;
+        vertical-align: middle;
       }
       .fortune-form {
         padding: 0.5rem;
