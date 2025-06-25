@@ -50,9 +50,10 @@
 
         header h1 {
             font-family: 'Orbitron', monospace;
-            font-size: 5rem;
+            font-size: 2.5rem;
             color: var(--neon-purple);
             text-shadow: 0 0 10px var(--neon-purple);
+            margin-bottom: 1.2rem;
         }
 
         /* Introduction Section */
@@ -115,7 +116,7 @@
         .tabs {
             display: flex;
             justify-content: center;
-            margin: 2rem 0;
+            margin: 0.7rem 0 1.2rem 0;
             font-size: 2rem;
         }
 
@@ -166,6 +167,8 @@
             color: var(--blue);
             text-align: center;
             margin-bottom: 1rem;
+            white-space: normal;
+            word-break: break-word;
         }
 
         .profile-text p {
@@ -417,22 +420,33 @@
     <style>
     @media (max-width: 600px) {
       header h1 {
-        font-size: 1.5rem;
+        font-size: 1.1rem;
         text-align: center;
         word-break: break-word;
-        padding: 0.5rem 0.5rem;
+        padding: 0.3rem 0.3rem;
         line-height: 1.2;
+        margin-bottom: 0.5rem;
       }
       .tabs {
-        font-size: 1.1rem;
-        flex-direction: column;
-        gap: 0.5rem;
+        font-size: 1rem;
+        flex-direction: row;
+        gap: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--light-grey);
+        margin: 0.3rem 0 0.7rem 0;
       }
       .tab {
-        font-size: 1.1rem;
+        font-size: 1rem;
         padding: 0.5rem 0.5rem;
-        width: 100%;
+        width: 50%;
         text-align: center;
+        border: none;
+        border-right: 1px solid var(--light-grey);
+        background: transparent;
+      }
+      .tab:last-child {
+        border-right: none;
       }
       .fortune-form {
         padding: 0.5rem;
@@ -448,7 +462,7 @@
       }
       .fortune-field label {
         width: 100%;
-        font-size: 1rem;
+        font-size: 0.95rem;
         text-align: left;
         margin-bottom: 0.2rem;
         padding-left: 0.1rem;
@@ -488,6 +502,14 @@
       .lucky-number {
         font-size: 1rem;
         padding: 0.5rem;
+      }
+      .profile-text h2 {
+        font-size: 1.1rem;
+        white-space: normal;
+        word-break: break-word;
+      }
+      .mission h2 {
+        font-size: 1.1rem;
       }
       .social-icons {
         display: flex;
