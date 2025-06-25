@@ -560,31 +560,38 @@
             box-shadow: 0 2px 16px 0 rgba(176,38,255,0.10);
         }
         .tabs {
-            font-size: 1.15rem;
-            flex-direction: row;
+            font-size: 1rem;
             gap: 0;
-            margin: 0.05rem 0 0.3rem 0;
+            margin: 0.2rem 0 0.7rem 0;
             width: 100%;
             max-width: 100vw;
             margin-left: auto;
             margin-right: auto;
+            justify-content: center;
         }
         .tab {
-            font-size: 1.15rem;
-            padding: 0.5rem 0.5rem;
-            width: 50%;
+            font-size: 1rem;
+            padding: 0.5rem 0.7rem;
+            width: 48%;
             text-align: center;
             border: none;
             background: transparent;
-            border-radius: 8px;
+            border-radius: 8px 8px 0 0;
             outline: none;
+            position: relative;
+            transition: color 0.2s, background 0.2s;
+        }
+        .tab.active {
+            color: var(--neon-yellow);
+            background: rgba(255, 215, 0, 0.08);
+            border-bottom: 2.5px solid var(--neon-yellow);
+            box-shadow: 0 2px 8px 0 rgba(255,215,0,0.10);
         }
         .tab-divider {
             color: var(--light-grey);
-            opacity: 0.7;
-            margin-left: 0.5rem;
-            margin-right: 0.5rem;
-            font-size: 1.2em;
+            opacity: 0.5;
+            margin: 0 0.3rem;
+            font-size: 1.1em;
             vertical-align: middle;
             display: inline-block;
             pointer-events: none;
@@ -630,31 +637,31 @@
             border-radius: 8px;
         }
         #fortune-response {
-            max-width: 100vw;
-            border-radius: 10px;
-            padding: 0.7rem 0.1rem;
-            margin: 1rem auto;
-            font-size: 1rem;
+            max-width: 98vw;
+            border-radius: 8px;
+            padding: 0.5rem 0.1rem;
+            margin: 0.7rem auto;
+            font-size: 0.98rem;
         }
         .fortune-section {
-            margin-bottom: 1.1rem;
-            padding: 1.1rem 0.4rem 0.9rem 0.4rem;
-            border-radius: 12px;
-            font-size: 1.04rem;
-            max-width: 98vw;
+            margin-bottom: 0.7rem;
+            padding: 0.7rem 0.3rem 0.6rem 0.3rem;
+            border-radius: 8px;
+            font-size: 0.98rem;
+            max-width: 96vw;
         }
         .fortune-title {
-            font-size: 1.18rem;
-            margin-bottom: 0.7rem;
-            text-shadow: 0 0 8px var(--neon-yellow), 0 0 16px var(--neon-yellow);
-            gap: 0.5rem;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 6px var(--neon-yellow), 0 0 10px var(--neon-yellow);
+            gap: 0.4rem;
         }
         .fortune-title .fortune-emoji {
-            font-size: 1.5em;
+            font-size: 1.1em;
         }
         .fortune-description {
-            font-size: 1.04rem;
-            margin-bottom: 0.4rem;
+            font-size: 0.97rem;
+            margin-bottom: 0.3rem;
         }
         .lucky-number {
             font-size: 1rem;
